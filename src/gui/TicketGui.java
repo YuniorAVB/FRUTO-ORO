@@ -227,6 +227,11 @@ public class TicketGui extends javax.swing.JFrame {
         jbtn_mantenimiento.setText("MANTENIMIENTO");
         jbtn_mantenimiento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtn_mantenimiento.setOpaque(true);
+        jbtn_mantenimiento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtn_mantenimientoMouseClicked(evt);
+            }
+        });
 
         jbtn_reportes.setBackground(new java.awt.Color(255, 255, 255));
         jbtn_reportes.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -798,6 +803,12 @@ public class TicketGui extends javax.swing.JFrame {
         v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbtn_reportesMouseClicked
+
+    private void jbtn_mantenimientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_mantenimientoMouseClicked
+        MantenimientoGui v = new MantenimientoGui();
+        v.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jbtn_mantenimientoMouseClicked
     
     public static void main(String args[]) {
         try {
