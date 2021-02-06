@@ -1,0 +1,21 @@
+-Procesos Principales
+  *Proceso de Pesajes
+	Pesaje de entrada y salida de Camiones
+  *Tickets
+	Editar TICKET
+  *Reportes
+	Reportes por FECHA
+  *Mantenimiento 
+	Agregar Empleado
+	Agregar Empresa
+	Agregar Movilidad
+	Agregar Conductor
+
+  *Balanza
+	Parametros de la Balanza
+  *Cambiar Usuario
+
+BACKGROUND 
+
+  PRIMARY : #0971C3 
+  SECONDARY: #FF3366
