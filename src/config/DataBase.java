@@ -14,4 +14,8 @@ public class DataBase {
     final static public String TBL_CONDUCTOR = "app_conductor";
     final static public String TBL_EMPRESA = "app_empresa";
     final static public String TBL_MOVILIDAD = "app_movilidad";
+    final static public String TBL_EMPRESA_MOVILIDAD_DETALLE = "app_empresa_movilidad_detalle";
+    final static public String TBL_EMPRESA_CONDUCTOR_DETALLE = "app_empresa_conductor_detalle";
+    final static public String TBL_PESAJE = "app_pesaje";
+
 }

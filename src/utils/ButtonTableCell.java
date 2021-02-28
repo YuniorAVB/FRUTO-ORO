@@ -14,9 +14,9 @@ import javax.swing.JButton;
 public class ButtonTableCell {
 
     public static JButton crearButton(String texto, String nombre) {
-        JButton btn_add = new JButton(texto);
-        btn_add.setName(nombre);
-        return btn_add;
+        JButton btn = new JButton(texto);
+        btn.setName(nombre);
+        return btn;
     }
 
 }

@@ -192,17 +192,15 @@ public class MantenimientoGui extends javax.swing.JFrame {
         tabla_lista.addColumn("RUC");
         tabla_lista.addColumn("NOMBRE");
         tabla_lista.addColumn("ID");
-        tabla_lista.addColumn("OPCIONES");
-        
+        tabla_lista.addColumn("MOVILIDAD");
+        tabla_lista.addColumn("CONDUCTOR");
 
         lista_empresas.forEach(epr -> {
-            tabla_lista.addRow(new Object[]{epr.getEpr_ruc(), epr.getEpr_nombre(), String.valueOf(epr.getEpr_id()),ButtonTableCell.crearButton("ELIMINAR", "ELIMINAR")});
+            tabla_lista.addRow(new Object[]{epr.getEpr_ruc(), epr.getEpr_nombre(), String.valueOf(epr.getEpr_id()), ButtonTableCell.crearButton("MOVILIDAD", "MOVILIDAD"), ButtonTableCell.crearButton("CONDUCTOR", "CONDUCTOR")});
         });
 
     }
-    
 
-    
     public void cargarMovilidades() {
 
         ArrayList<MovilidadEntiti> lista_movilidad = MovilidadController.getListaMovilidad();
@@ -218,7 +216,7 @@ public class MantenimientoGui extends javax.swing.JFrame {
         tabla_lista.addColumn("ID");
 
         lista_movilidad.forEach(mov -> {
-            tabla_lista.addRow(new String[]{mov.getMov_placa(), mov.getMv_destino(),mov.getMov_procedencia(),String.valueOf(mov.getMov_id())});
+            tabla_lista.addRow(new String[]{mov.getMov_placa(), mov.getMv_destino(), mov.getMov_procedencia(), String.valueOf(mov.getMov_id())});
         });
 
     }
@@ -226,7 +224,7 @@ public class MantenimientoGui extends javax.swing.JFrame {
     public void cargarListaTabla() {
 
         tipo_mantenimiento = (String) jcb_tipo_mantenimiento.getSelectedItem();
-        
+
         jtbl_lista.setDefaultRenderer(Object.class, new RenderButton());
 
         switch (tipo_mantenimiento) {
@@ -246,17 +244,17 @@ public class MantenimientoGui extends javax.swing.JFrame {
                 jlbl_crear_session.setVisible(false);
                 this.cargarConductores();
                 break;
-                
+
             case "MOVILIDAD":
                 jlbl_crear_session.setVisible(false);
                 this.cargarMovilidades();
                 break;
 
         }
-        
+
         buscar = new TableRowSorter<>(tabla_lista);
         jtbl_lista.setRowSorter(buscar);
-        
+
     }
 
     public void eliminarObjetoSeleccionado() {
@@ -271,11 +269,11 @@ public class MantenimientoGui extends javax.swing.JFrame {
             case "CONDUCTOR":
                 ConductorController.deleteConductor(id_objeto);
                 break;
-            
+
             case "EMPRESAS":
                 EmpresaController.deleteEmpresa(id_objeto);
                 break;
-                
+
             case "MOVILIDAD":
                 MovilidadController.deleteMovilidad(id_objeto);
                 break;
@@ -303,11 +301,41 @@ public class MantenimientoGui extends javax.swing.JFrame {
                 EmpresaGui v_epr = new EmpresaGui();
                 v_epr.setVisible(true);
                 break;
-            
+
             case "MOVILIDAD":
                 MovilidadGui v_mov = new MovilidadGui();
                 v_mov.setVisible(true);
                 break;
+
+        }
+    }
+
+    public void empresaMovilidadConductor(int row, int column) {
+        if (row < jtbl_lista.getRowCount() && row >= 0 && column < jtbl_lista.getColumnCount() && column > 0) {
+
+            Object value = jtbl_lista.getValueAt(row, column);
+
+            if (value instanceof JButton) {
+
+                ((JButton) value).doClick();
+
+                JButton btn = (JButton) value;
+
+                if (btn.getName().equals("MOVILIDAD")) {
+
+                    EmpresaMovilidad em_mov = new EmpresaMovilidad();
+
+                    em_mov.setVisible(true);
+
+                } else if (btn.getName().equals("CONDUCTOR")) {
+
+                    EmpresaConductor em_con = new EmpresaConductor();
+
+                    em_con.setVisible(true);
+
+                }
+
+            }
 
         }
     }
@@ -752,10 +780,10 @@ public class MantenimientoGui extends javax.swing.JFrame {
 
     private void jtbl_listaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbl_listaMouseClicked
         int index_row = 0;
-        
+
         int column = jtbl_lista.getColumnModel().getColumnIndexAtX(evt.getX());
-        int row = evt.getY()/jtbl_lista.getRowHeight();
-        
+        int row = evt.getY() / jtbl_lista.getRowHeight();
+
         switch (tipo_mantenimiento) {
 
             case "EMPLEADOS":
@@ -771,27 +799,11 @@ public class MantenimientoGui extends javax.swing.JFrame {
             case "EMPRESAS":
                 index_row = jtbl_lista.getSelectedRow();
                 id_objeto = Integer.parseInt((String) tabla_lista.getValueAt(index_row, 2));
-                
-                if(row < jtbl_lista.getRowCount() && row >= 0 && column < jtbl_lista.getColumnCount()&& column>0){
-                                       
-                    Object value  = jtbl_lista.getValueAt(row, column);
-                    
-                    if(value instanceof JButton){
-                        
-                        ((JButton)value).doClick();
-                        
-                        JButton btn = (JButton) value;
-                        
-                        if(btn.getName().equals("ELIMINAR")){
-                               System.out.println("ELIMNAR");
-                        }
-                        
-                    }
-                    
-                }
-                
+
+                empresaMovilidadConductor(row, column);
+
                 break;
-             
+
             case "MOVILIDAD":
                 index_row = jtbl_lista.getSelectedRow();
                 id_objeto = Integer.parseInt((String) tabla_lista.getValueAt(index_row, 3));
@@ -854,14 +866,14 @@ public class MantenimientoGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jlbl_crear_sessionMouseClicked
 
     private void jtxt_buscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxt_buscarKeyReleased
-   
+
         String buscar_objeto = jtxt_buscar.getText();
-        
-         if (buscar_objeto.length() == 0) {
-               buscar.setRowFilter(null);
-            } else {
-               buscar.setRowFilter(RowFilter.regexFilter("(?i)" +buscar_objeto));
-            }
+
+        if (buscar_objeto.length() == 0) {
+            buscar.setRowFilter(null);
+        } else {
+            buscar.setRowFilter(RowFilter.regexFilter("(?i)" + buscar_objeto));
+        }
     }//GEN-LAST:event_jtxt_buscarKeyReleased
 
     public static void main(String args[]) {

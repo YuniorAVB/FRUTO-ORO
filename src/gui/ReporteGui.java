@@ -2,63 +2,70 @@ package gui;
 
 import config.Rutas;
 import config.EstadosApp;
-import controller.ModeloTicketController;
 import entities.ModeloTicketEntiti;
 import java.awt.event.MouseListener;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
 
 import state.StateApp;
 
 public class ReporteGui extends javax.swing.JFrame {
-    
+
     ModeloTicketEntiti ticket;
-    
+    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyy");
+
     public ReporteGui() {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.OcultarOpcionesSession();
         this.cargarImagenes();
-        
+
     }
-    
+
     public void OcultarOpcionesSession() {
-        
+
         switch (StateApp.ses_tipo) {
-            
+
             case EstadosApp.SESSION_ADMIN:
                 break;
-            
+
             case EstadosApp.SESSION_EMPLEADO:
                 this.quitarEventosAdmin();
                 break;
-            
+
             default:
                 this.quitarEventosTodos();
                 break;
-            
+
         }
-        
+
     }
-    
+
     public void quitarEventosAdmin() {
-        
+
         jbtn_balanza.setEnabled(false);
         jbtn_respaldo.setEnabled(false);
-        
+
         MouseListener[] mListener = jbtn_balanza.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_balanza.removeMouseListener(ml);
         }
-        
+
         mListener = jbtn_respaldo.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_respaldo.removeMouseListener(ml);
         }
-        
+
     }
-    
+
     public void quitarEventosTodos() {
-        
+
         jbtn_balanza.setEnabled(false);
         jbtn_tickets.setEnabled(false);
         jbtn_balanza.setEnabled(false);
@@ -67,52 +74,52 @@ public class ReporteGui extends javax.swing.JFrame {
         jbtn_proceso_pesaje.setEnabled(false);
         jbtn_respaldo.setEnabled(false);
         jbtn_cambiar_usuario.setEnabled(false);
-        
+
         MouseListener[] mListener = jbtn_balanza.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_respaldo.removeMouseListener(ml);
         }
-        
+
         mListener = jbtn_tickets.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_tickets.removeMouseListener(ml);
         }
-        
+
         mListener = jbtn_mantenimiento.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_mantenimiento.removeMouseListener(ml);
         }
-        
+
         mListener = jbtn_reportes.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_reportes.removeMouseListener(ml);
         }
-        
+
         mListener = jbtn_proceso_pesaje.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_proceso_pesaje.removeMouseListener(ml);
         }
-        
+
         mListener = jbtn_respaldo.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_respaldo.removeMouseListener(ml);
         }
-        
+
         mListener = jbtn_cambiar_usuario.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_cambiar_usuario.removeMouseListener(ml);
         }
-        
+
     }
-    
+
     public void cargarImagenes() {
-        
+
         rsscalelabel.RSScaleLabel.setScaleLabel(jlbl_logo, Rutas.DIR_ASSETS_IMAGES + "login.png");
 
         //PROCESO DE TICKET
         //rsscalelabel.RSScaleLabel.setScaleLabel(jlbl_proceso_peaje_capturar, Rutas.DIR_ASSETS_IMAGES + "capturarkg.png");
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -134,13 +141,15 @@ public class ReporteGui extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jtxt_fecha_desde = new javax.swing.JTextField();
-        jtxt_fecha_hasta = new javax.swing.JTextField();
         jcb_tipo_reporte = new javax.swing.JComboBox<>();
         jlbl_generar_reporte = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jlbl_tipo_reporte = new javax.swing.JLabel();
+        jdt_fecha_desde = new com.toedter.calendar.JDateChooser();
+        jdt_fecha_hasta = new com.toedter.calendar.JDateChooser();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -252,7 +261,7 @@ public class ReporteGui extends javax.swing.JFrame {
                 .addComponent(jbtn_balanza, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jbtn_respaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addGap(10, 10, 10)
@@ -317,14 +326,8 @@ public class ReporteGui extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("HASTA");
 
-        jtxt_fecha_desde.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jtxt_fecha_desde.setText("2021-01-21");
-
-        jtxt_fecha_hasta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jtxt_fecha_hasta.setText("2021-01-21");
-
         jcb_tipo_reporte.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jcb_tipo_reporte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FECHA", "RUC", "DNI", "PRODUCTO" }));
+        jcb_tipo_reporte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CONDUCTOR", "EMPRESA", "PRODUCTO" }));
         jcb_tipo_reporte.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jcb_tipo_reporteItemStateChanged(evt);
@@ -338,6 +341,11 @@ public class ReporteGui extends javax.swing.JFrame {
         jlbl_generar_reporte.setText("GENERAR REPORTE");
         jlbl_generar_reporte.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jlbl_generar_reporte.setOpaque(true);
+        jlbl_generar_reporte.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlbl_generar_reporteMouseClicked(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -349,6 +357,10 @@ public class ReporteGui extends javax.swing.JFrame {
         jlbl_tipo_reporte.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jlbl_tipo_reporte.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbl_tipo_reporte.setText("FECHA");
+
+        jdt_fecha_desde.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        jdt_fecha_hasta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -367,26 +379,27 @@ public class ReporteGui extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jcb_tipo_reporte, 0, 324, Short.MAX_VALUE)
-                            .addComponent(jtxt_fecha_desde))
+                            .addComponent(jdt_fecha_desde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jlbl_tipo_reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtxt_fecha_hasta, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
-                            .addComponent(jTextField4))))
+                            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
+                            .addComponent(jdt_fecha_hasta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtxt_fecha_desde, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtxt_fecha_hasta, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jdt_fecha_desde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jdt_fecha_hasta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -400,13 +413,26 @@ public class ReporteGui extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jTable1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -414,7 +440,9 @@ public class ReporteGui extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -470,7 +498,7 @@ public class ReporteGui extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtn_respaldoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_respaldoMouseClicked
-        
+
 
     }//GEN-LAST:event_jbtn_respaldoMouseClicked
 
@@ -489,12 +517,12 @@ public class ReporteGui extends javax.swing.JFrame {
     private void jcb_tipo_reporteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcb_tipo_reporteItemStateChanged
 
         String tipo_reporte = (String) jcb_tipo_reporte.getSelectedItem();
-        
+
         jlbl_tipo_reporte.setText(tipo_reporte);
     }//GEN-LAST:event_jcb_tipo_reporteItemStateChanged
 
     private void jbtn_ticketsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_ticketsMouseClicked
-         TicketGui v = new TicketGui();
+        TicketGui v = new TicketGui();
         v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbtn_ticketsMouseClicked
@@ -504,17 +532,29 @@ public class ReporteGui extends javax.swing.JFrame {
         v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbtn_mantenimientoMouseClicked
-    
+
+    private void jlbl_generar_reporteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbl_generar_reporteMouseClicked
+
+        String fechaDesde = sdf.format(jdt_fecha_desde.getDate());
+        String fechaHasta = sdf.format(jdt_fecha_hasta.getDate());
+        
+        System.out.println(fechaDesde+fechaHasta);
+
+        
+
+       
+    }//GEN-LAST:event_jlbl_generar_reporteMouseClicked
+
     public static void main(String args[]) {
         try {
-            
+
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-            
+
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ReporteGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
@@ -537,6 +577,8 @@ public class ReporteGui extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JLabel jbtn_balanza;
     private javax.swing.JLabel jbtn_cambiar_usuario;
@@ -546,10 +588,10 @@ public class ReporteGui extends javax.swing.JFrame {
     private javax.swing.JLabel jbtn_respaldo;
     private javax.swing.JLabel jbtn_tickets;
     private javax.swing.JComboBox<String> jcb_tipo_reporte;
+    private com.toedter.calendar.JDateChooser jdt_fecha_desde;
+    private com.toedter.calendar.JDateChooser jdt_fecha_hasta;
     private javax.swing.JLabel jlbl_generar_reporte;
     private javax.swing.JLabel jlbl_logo;
     private javax.swing.JLabel jlbl_tipo_reporte;
-    private javax.swing.JTextField jtxt_fecha_desde;
-    private javax.swing.JTextField jtxt_fecha_hasta;
     // End of variables declaration//GEN-END:variables
 }
