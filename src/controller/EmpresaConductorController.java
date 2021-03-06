@@ -25,14 +25,17 @@ public class EmpresaConductorController {
 
             for (int j = 0; j < lista_conductor_empresa.size(); j++) {
 
-                if (conductor.getCon_id() == lista_conductor_empresa.get(j).getEprcondet_con_id().getCon_id()) {
-                    iterador.remove();
+                if (lista_conductor_empresa.get(j).getEprcondet_con_id() != null) {
+
+                    if (conductor.getCon_id() == lista_conductor_empresa.get(j).getEprcondet_con_id().getCon_id()) {
+                        iterador.remove();
+                    }
+
                 }
-                
+
             }
         }
-        
-        
+
         return lista_conductor_disponible;
 
     }

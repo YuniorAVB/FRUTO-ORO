@@ -1,24 +1,24 @@
 package controller;
 
 import entities.EmpresaEntiti;
-import entities.EmpresaMovilidadDetalleEntiti;
+import entities.EmpresaMovilidadEntiti;
 import entities.MovilidadEntiti;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
-import model.EmpresaMovilidadDetalleModel;
+import model.EmpresaMovilidadModel;
 import model.MovilidadModel;
 
 /**
  *
  * @author YAVB
  */
-public class EmpresaMovilidadDetalleController {
+public class EmpresaMovilidadController {
 
     public static ArrayList<MovilidadEntiti> getListaEmpresaMovilidadDisponible() {
 
         ArrayList<MovilidadEntiti> lista_movilidad_disponible = MovilidadModel.getTodosMovilidad();
-        ArrayList<EmpresaMovilidadDetalleEntiti> lista_movilidad_empresa = EmpresaMovilidadDetalleModel.getTodosEmpresaMovilidad();
+        ArrayList<EmpresaMovilidadEntiti> lista_movilidad_empresa = EmpresaMovilidadModel.getTodosEmpresaMovilidad();
 
         Iterator<MovilidadEntiti> iterador = lista_movilidad_disponible.iterator();
 
@@ -39,17 +39,17 @@ public class EmpresaMovilidadDetalleController {
 
     }
 
-    public static ArrayList<EmpresaMovilidadDetalleEntiti> getListaEmpresaMovilidadByEmpresaId(int epr_id) {
+    public static ArrayList<EmpresaMovilidadEntiti> getListaEmpresaMovilidadByEmpresaId(int epr_id) {
 
-        return EmpresaMovilidadDetalleModel.getTodosEmpresaMovilidadByEmpresaId(new EmpresaEntiti(epr_id));
+        return EmpresaMovilidadModel.getTodosEmpresaMovilidadByEmpresaId(new EmpresaEntiti(epr_id));
 
     }
 
     public static void insertEmpresaMovilidad(int eprmovdet_epr_id, int eprmovdet_mov_id) {
 
-        EmpresaMovilidadDetalleEntiti empresa_movilidad = new EmpresaMovilidadDetalleEntiti(new EmpresaEntiti(eprmovdet_epr_id), new MovilidadEntiti(eprmovdet_mov_id));
+        EmpresaMovilidadEntiti empresa_movilidad = new EmpresaMovilidadEntiti(new EmpresaEntiti(eprmovdet_epr_id), new MovilidadEntiti(eprmovdet_mov_id));
 
-        boolean resultado = EmpresaMovilidadDetalleModel.insertEmpresaMovilidad(empresa_movilidad);
+        boolean resultado = EmpresaMovilidadModel.insertEmpresaMovilidad(empresa_movilidad);
 
         if (resultado) {
             JOptionPane.showMessageDialog(null, "Movilidad agregado Correctamente");
@@ -61,15 +61,29 @@ public class EmpresaMovilidadDetalleController {
 
     public static void deleteEmpresaMovilidad(int eprmovdet_id) {
 
-        EmpresaMovilidadDetalleEntiti movilidad_empresa = new EmpresaMovilidadDetalleEntiti(eprmovdet_id);
+        EmpresaMovilidadEntiti movilidad_empresa = new EmpresaMovilidadEntiti(eprmovdet_id);
 
-        boolean resultado = EmpresaMovilidadDetalleModel.deleteEmpresaMovilidad(movilidad_empresa);
+        boolean resultado = EmpresaMovilidadModel.deleteEmpresaMovilidad(movilidad_empresa);
 
         if (resultado) {
             JOptionPane.showMessageDialog(null, "Movilidad Eliminado Correctamente");
         } else {
             JOptionPane.showMessageDialog(null, "Ocurrio Un Error al eliminar");
         }
+
+    }
+
+    public static EmpresaMovilidadEntiti getEmpresaMovilidadByPlaca(String placa) {
+
+        MovilidadEntiti movilidad = MovilidadModel.getMovilidadByPlaca(new MovilidadEntiti(placa));
+        EmpresaMovilidadEntiti movilidad_empresa = null;
+
+        if (movilidad != null) {
+            movilidad_empresa = EmpresaMovilidadModel.getEmpresaMovilidadByPlaca(movilidad);
+
+        }
+
+        return movilidad_empresa;
 
     }
 

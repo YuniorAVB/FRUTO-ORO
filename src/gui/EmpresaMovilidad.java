@@ -5,9 +5,9 @@
  */
 package gui;
 
-import controller.EmpresaMovilidadDetalleController;
+import controller.EmpresaMovilidadController;
 import entities.EmpresaEntiti;
-import entities.EmpresaMovilidadDetalleEntiti;
+import entities.EmpresaMovilidadEntiti;
 import entities.MovilidadEntiti;
 import java.util.ArrayList;
 import javax.swing.JButton;
@@ -295,7 +295,7 @@ public class EmpresaMovilidad extends javax.swing.JFrame {
 
     public void eliminarMovilidadEmpresa(int eprmovdet_id) {
 
-        EmpresaMovilidadDetalleController.deleteEmpresaMovilidad(eprmovdet_id);
+        EmpresaMovilidadController.deleteEmpresaMovilidad(eprmovdet_id);
 
         cargarMovilidadDisponible();
         cargarMovilidadEmpresa();
@@ -304,7 +304,7 @@ public class EmpresaMovilidad extends javax.swing.JFrame {
 
     public void agregarMovilidadEmpresa(int mov_id) {
 
-        EmpresaMovilidadDetalleController.insertEmpresaMovilidad(id_empresa, mov_id);
+        EmpresaMovilidadController.insertEmpresaMovilidad(id_empresa, mov_id);
 
         cargarMovilidadDisponible();
         cargarMovilidadEmpresa();
@@ -313,7 +313,7 @@ public class EmpresaMovilidad extends javax.swing.JFrame {
 
     public void cargarMovilidadDisponible() {
 
-        ArrayList<MovilidadEntiti> lista_empresas = EmpresaMovilidadDetalleController.getListaEmpresaMovilidadDisponible();
+        ArrayList<MovilidadEntiti> lista_empresas = EmpresaMovilidadController.getListaEmpresaMovilidadDisponible();
 
         modelo_tabla_movilidad_disponible = (DefaultTableModel) jtbl_movilidad_disponible.getModel();
 
@@ -339,7 +339,7 @@ public class EmpresaMovilidad extends javax.swing.JFrame {
 
     public void cargarMovilidadEmpresa() {
 
-        ArrayList<EmpresaMovilidadDetalleEntiti> lista_empresas = EmpresaMovilidadDetalleController.getListaEmpresaMovilidadByEmpresaId(id_empresa);
+        ArrayList<EmpresaMovilidadEntiti> lista_empresas = EmpresaMovilidadController.getListaEmpresaMovilidadByEmpresaId(id_empresa);
 
         modelo_tabla_movilidad_empresa = (DefaultTableModel) jtbl_movilidad_empresa.getModel();
 

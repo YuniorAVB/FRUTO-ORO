@@ -29,6 +29,12 @@ public class MovilidadEntiti {
         this.mov_placa = mov_placa;
     }
 
+    public MovilidadEntiti(String mov_placa) {
+        this.mov_placa = mov_placa;
+    }
+    
+    
+
     public int getMov_id() {
         return mov_id;
     }
@@ -44,6 +50,7 @@ public class MovilidadEntiti {
     public String getMov_placa() {
         return mov_placa;
     }
+    
     
     
     

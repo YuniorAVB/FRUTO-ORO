@@ -4,7 +4,7 @@ import config.DataBase;
 import config.MensajeError;
 import db.Conexion;
 import entities.EmpresaEntiti;
-import entities.EmpresaMovilidadDetalleEntiti;
+import entities.EmpresaMovilidadEntiti;
 import entities.MovilidadEntiti;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,10 +12,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class EmpresaMovilidadDetalleModel {
+public class EmpresaMovilidadModel {
 
-    public static ArrayList<EmpresaMovilidadDetalleEntiti> getTodosEmpresaMovilidad() {
-        ArrayList<EmpresaMovilidadDetalleEntiti> empresa_movilidad_lista = new ArrayList<>();
+    public static ArrayList<EmpresaMovilidadEntiti> getTodosEmpresaMovilidad() {
+        ArrayList<EmpresaMovilidadEntiti> empresa_movilidad_lista = new ArrayList<>();
         EmpresaEntiti empresa;
         MovilidadEntiti movilidad;
 
@@ -33,7 +33,7 @@ public class EmpresaMovilidadDetalleModel {
                 empresa = EmpresaModel.getEmpresaById(new EmpresaEntiti(eprmovdet_epr_id));
                 movilidad = MovilidadModel.getMovilidadById(new MovilidadEntiti(eprmovdet_mov_id));
 
-                empresa_movilidad_lista.add(new EmpresaMovilidadDetalleEntiti(eprmovdet_id, empresa, movilidad));
+                empresa_movilidad_lista.add(new EmpresaMovilidadEntiti(eprmovdet_id, empresa, movilidad));
 
             }
 
@@ -43,9 +43,9 @@ public class EmpresaMovilidadDetalleModel {
         return empresa_movilidad_lista;
     }
 
-    public static ArrayList<EmpresaMovilidadDetalleEntiti> getTodosEmpresaMovilidadByEmpresaId(EmpresaEntiti empresa_buscar) {
+    public static ArrayList<EmpresaMovilidadEntiti> getTodosEmpresaMovilidadByEmpresaId(EmpresaEntiti empresa_buscar) {
 
-        ArrayList<EmpresaMovilidadDetalleEntiti> empresa_movilidad_lista = new ArrayList<>();
+        ArrayList<EmpresaMovilidadEntiti> empresa_movilidad_lista = new ArrayList<>();
         EmpresaEntiti empresa;
         MovilidadEntiti movilidad;
 
@@ -67,7 +67,7 @@ public class EmpresaMovilidadDetalleModel {
                 empresa = EmpresaModel.getEmpresaById(new EmpresaEntiti(eprmovdet_epr_id));
                 movilidad = MovilidadModel.getMovilidadById(new MovilidadEntiti(eprmovdet_mov_id));
 
-                empresa_movilidad_lista.add(new EmpresaMovilidadDetalleEntiti(eprmovdet_id, empresa, movilidad));
+                empresa_movilidad_lista.add(new EmpresaMovilidadEntiti(eprmovdet_id, empresa, movilidad));
 
             }
 
@@ -77,7 +77,42 @@ public class EmpresaMovilidadDetalleModel {
         return empresa_movilidad_lista;
     }
 
-    public static boolean insertEmpresaMovilidad(EmpresaMovilidadDetalleEntiti empresaMovilidad) {
+    public static EmpresaMovilidadEntiti getEmpresaMovilidadByPlaca(MovilidadEntiti movilidad_buscar) {
+
+        EmpresaEntiti empresa;
+        MovilidadEntiti movilidad;
+
+        EmpresaMovilidadEntiti empresa_movilidad = null;
+
+        try {
+            PreparedStatement stm = Conexion.getConexion().prepareStatement("SELECT * FROM "
+                    + DataBase.TBL_EMPRESA_MOVILIDAD_DETALLE
+                    + " WHERE eprmovdet_mov_id =  ? ;");
+
+            stm.setInt(1, movilidad_buscar.getMov_id());
+
+            ResultSet rs = stm.executeQuery();
+
+            while (rs.next()) {
+
+                int eprmovdet_id = rs.getInt("eprmovdet_id");
+                int eprmovdet_epr_id = rs.getInt("eprmovdet_epr_id");
+                int eprmovdet_mov_id = rs.getInt("eprmovdet_mov_id");
+
+                empresa = EmpresaModel.getEmpresaById(new EmpresaEntiti(eprmovdet_epr_id));
+                movilidad = MovilidadModel.getMovilidadById(new MovilidadEntiti(eprmovdet_mov_id));
+
+                empresa_movilidad = new EmpresaMovilidadEntiti(eprmovdet_id, empresa, movilidad);
+
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, MensajeError.ERROR_LLAME_AL_PROGRAMADOR);
+        }
+        return empresa_movilidad;
+    }
+
+    public static boolean insertEmpresaMovilidad(EmpresaMovilidadEntiti empresaMovilidad) {
 
         int result = 0;
 
@@ -97,7 +132,7 @@ public class EmpresaMovilidadDetalleModel {
 
     }
 
-    public static boolean deleteEmpresaMovilidad(EmpresaMovilidadDetalleEntiti empresaMovilidad) {
+    public static boolean deleteEmpresaMovilidad(EmpresaMovilidadEntiti empresaMovilidad) {
 
         int result = 0;
 

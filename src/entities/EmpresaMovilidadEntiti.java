@@ -9,24 +9,24 @@ package entities;
  *
  * @author yavb
  */
-public class EmpresaMovilidadDetalleEntiti {
+public class EmpresaMovilidadEntiti {
 
     private int eprmovdet_id;
     private EmpresaEntiti eprmovdet_epr_id;
     private MovilidadEntiti eprmovdet_mov_id;
 
-    public EmpresaMovilidadDetalleEntiti(int eprmovdet_id, EmpresaEntiti eprmovdet_epr_id, MovilidadEntiti eprmovdet_mov_id) {
+    public EmpresaMovilidadEntiti(int eprmovdet_id, EmpresaEntiti eprmovdet_epr_id, MovilidadEntiti eprmovdet_mov_id) {
         this.eprmovdet_id = eprmovdet_id;
         this.eprmovdet_epr_id = eprmovdet_epr_id;
         this.eprmovdet_mov_id = eprmovdet_mov_id;
     }
 
-    public EmpresaMovilidadDetalleEntiti(EmpresaEntiti eprmovdet_epr_id, MovilidadEntiti eprmovdet_mov_id) {
+    public EmpresaMovilidadEntiti(EmpresaEntiti eprmovdet_epr_id, MovilidadEntiti eprmovdet_mov_id) {
         this.eprmovdet_epr_id = eprmovdet_epr_id;
         this.eprmovdet_mov_id = eprmovdet_mov_id;
     }
 
-    public EmpresaMovilidadDetalleEntiti(int eprmovdet_id) {
+    public EmpresaMovilidadEntiti(int eprmovdet_id) {
         this.eprmovdet_id = eprmovdet_id;
     }
 

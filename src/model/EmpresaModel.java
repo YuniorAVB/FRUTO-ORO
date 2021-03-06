@@ -25,7 +25,7 @@ public class EmpresaModel {
                 String epr_ruc = rs.getString("epr_ruc");
                 String epr_nombre = rs.getString("epr_nombre");
                 int epr_id = rs.getInt("epr_id");
-                
+
                 empresa_lista.add(new EmpresaEntiti(epr_id, epr_ruc, epr_nombre));
 
             }
@@ -72,7 +72,7 @@ public class EmpresaModel {
             PreparedStatement stm = Conexion.getConexion().prepareStatement("INSERT INTO " + DataBase.TBL_EMPRESA + " (epr_nombre,epr_ruc) VALUES (?,?)");
             stm.setString(1, empresa.getEpr_nombre());
             stm.setString(2, empresa.getEpr_ruc());
-            
+
             result = stm.executeUpdate();
 
         } catch (SQLException ex) {

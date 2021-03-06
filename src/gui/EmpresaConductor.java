@@ -354,8 +354,12 @@ public class EmpresaConductor extends javax.swing.JFrame {
 
         lista_conductor.forEach(eprmov -> {
 
-            modelo_tabla_conductor_empresa.addRow(new Object[]{eprmov.getEprcondet_id(),
+            if(eprmov.getEprcondet_con_id() != null ){
+                
+                modelo_tabla_conductor_empresa.addRow(new Object[]{eprmov.getEprcondet_id(),
                 eprmov.getEprcondet_con_id().getCon_nombre(),eprmov.getEprcondet_con_id().getCon_dni(), ButtonTableCell.crearButton("ELIMINAR", "ELIMINAR")});
+                
+            }
         });
 
         jtbl_conductor_empresa.setDefaultRenderer(Object.class, new RenderButton());
