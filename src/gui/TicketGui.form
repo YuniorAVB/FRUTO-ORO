@@ -276,6 +276,9 @@
                     </Property>
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jbtn_balanzaMouseClicked"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jbtn_respaldo">
                   <Properties>
@@ -407,13 +410,15 @@
                                   <Component id="jLabel4" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jtxt_proceso_ticket_sub_titulo" alignment="0" pref="689" max="32767" attributes="0"/>
-                                  <Component id="jtxt_proceso_ticket_pie_pagina" alignment="0" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="jtxt_proceso_ticket_pie_pagina" min="-2" pref="689" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jlbl_proceso_ticket_guardar" pref="94" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="jtxt_proceso_ticket_sub_titulo" max="32767" attributes="0"/>
                                   <Component id="jtxt_proceso_ticket_titulo" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jlbl_proceso_ticket_guardar" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>

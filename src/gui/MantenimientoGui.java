@@ -423,6 +423,11 @@ public class MantenimientoGui extends javax.swing.JFrame {
         jbtn_reportes.setText("REPORTES");
         jbtn_reportes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtn_reportes.setOpaque(true);
+        jbtn_reportes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtn_reportesMouseClicked(evt);
+            }
+        });
 
         jbtn_balanza.setBackground(new java.awt.Color(255, 255, 255));
         jbtn_balanza.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -752,7 +757,10 @@ public class MantenimientoGui extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtn_respaldoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_respaldoMouseClicked
-
+        BackupGui v = new BackupGui();
+        
+        v.setVisible(true);
+        this.dispose();
 
     }//GEN-LAST:event_jbtn_respaldoMouseClicked
 
@@ -875,6 +883,12 @@ public class MantenimientoGui extends javax.swing.JFrame {
             buscar.setRowFilter(RowFilter.regexFilter("(?i)" + buscar_objeto));
         }
     }//GEN-LAST:event_jtxt_buscarKeyReleased
+
+    private void jbtn_reportesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_reportesMouseClicked
+       ReporteGui v = new ReporteGui();
+       v.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_jbtn_reportesMouseClicked
 
     public static void main(String args[]) {
         try {

@@ -172,7 +172,7 @@
                           <Component id="jbtn_balanza" min="-2" pref="43" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jbtn_respaldo" min="-2" pref="43" max="-2" attributes="0"/>
-                          <EmptySpace pref="11" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
@@ -279,6 +279,9 @@
                     </Property>
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jbtn_balanzaMouseClicked"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jbtn_respaldo">
                   <Properties>
@@ -480,11 +483,7 @@
                               <Component id="jPanel21" alignment="1" max="32767" attributes="0"/>
                               <Component id="jPanel22" alignment="0" max="32767" attributes="0"/>
                               <Component id="jScrollPane1" alignment="1" pref="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jtxt_buscar_pendientes" min="-2" pref="203" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jlbl_refrescar_tabla" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="jlbl_refrescar_tabla" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -498,10 +497,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jPanel22" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jtxt_buscar_pendientes" pref="36" max="32767" attributes="0"/>
-                              <Component id="jlbl_refrescar_tabla" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jlbl_refrescar_tabla" min="-2" pref="36" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane1" min="-2" pref="489" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -672,14 +668,6 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JTextField" name="jtxt_buscar_pendientes">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="14" style="1"/>
-                    </Property>
-                    <Property name="horizontalAlignment" type="int" value="0"/>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JLabel" name="jlbl_refrescar_tabla">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -739,21 +727,21 @@
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jLabel9" max="32767" attributes="0"/>
+                                      <Component id="jLabel9" pref="97" max="32767" attributes="0"/>
                                       <Component id="jLabel4" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="jtxt_placa_movilidad" min="-2" pref="172" max="-2" attributes="0"/>
+                                          <Component id="jtxt_placa_movilidad" min="-2" pref="166" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jtxt_tara_referencial" max="32767" attributes="0"/>
+                                          <Component id="jtxt_tara_referencial" pref="202" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="jtxt_producto" alignment="1" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jtxt_empresa_nombre" min="-2" pref="319" max="-2" attributes="0"/>
+                                          <Component id="jtxt_empresa_nombre" min="-2" pref="313" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="jtxt_empresa_ruc" min="-2" pref="211" max="-2" attributes="0"/>
                                       </Group>
@@ -1407,6 +1395,9 @@
                           <Color id="Cursor de Mano"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jlbl_proceso_peaje_copiaMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -1513,6 +1504,9 @@
                           <Color id="Cursor de Mano"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jlbl_proceso_peaje_salirMouseClicked"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel20">
                       <Properties>
@@ -1660,6 +1654,9 @@
                           <Color id="Cursor de Mano"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jlbl_proceso_peaje_resetear_ingresoMouseClicked"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jtxt_fecha_ingreso">
                       <Properties>
@@ -1676,7 +1673,6 @@
                           <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
                         <Property name="enabled" type="boolean" value="false"/>
-                        <Property name="opaque" type="boolean" value="true"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jtxt_hora_ingreso">
@@ -1827,6 +1823,9 @@
                           <Color id="Cursor de Mano"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jlbl_proceso_peaje_resetear_salidaMouseClicked"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel27">
                       <Properties>

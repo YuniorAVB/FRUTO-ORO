@@ -167,9 +167,8 @@ public class BackupGui extends javax.swing.JFrame {
             }
         });
 
-        jbtn_proceso_pesaje.setBackground(new java.awt.Color(255, 51, 102));
+        jbtn_proceso_pesaje.setBackground(new java.awt.Color(255, 255, 255));
         jbtn_proceso_pesaje.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jbtn_proceso_pesaje.setForeground(new java.awt.Color(255, 255, 255));
         jbtn_proceso_pesaje.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jbtn_proceso_pesaje.setText("PROCESO DE PESAJE");
         jbtn_proceso_pesaje.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -211,8 +210,9 @@ public class BackupGui extends javax.swing.JFrame {
         jbtn_balanza.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtn_balanza.setOpaque(true);
 
-        jbtn_respaldo.setBackground(new java.awt.Color(255, 255, 255));
+        jbtn_respaldo.setBackground(new java.awt.Color(255, 51, 102));
         jbtn_respaldo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jbtn_respaldo.setForeground(new java.awt.Color(255, 255, 255));
         jbtn_respaldo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jbtn_respaldo.setText("RESPALDO (BACKUP)");
         jbtn_respaldo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -255,7 +255,7 @@ public class BackupGui extends javax.swing.JFrame {
                 .addComponent(jbtn_balanza, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jbtn_respaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addGap(10, 10, 10)
@@ -511,7 +511,7 @@ public class BackupGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtn_ticketsMouseClicked
 
     private void jbtn_proceso_pesajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_proceso_pesajeMouseClicked
-        BackupGui v = new BackupGui();
+        DashBoardGui v = new DashBoardGui();
         v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbtn_proceso_pesajeMouseClicked

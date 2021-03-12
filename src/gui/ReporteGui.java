@@ -498,7 +498,10 @@ public class ReporteGui extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtn_respaldoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_respaldoMouseClicked
-
+        
+        BackupGui v = new BackupGui();
+        v.setVisible(true);
+        this.dispose();
 
     }//GEN-LAST:event_jbtn_respaldoMouseClicked
 

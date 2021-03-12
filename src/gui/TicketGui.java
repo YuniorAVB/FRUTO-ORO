@@ -9,9 +9,9 @@ import java.awt.event.MouseListener;
 import state.StateApp;
 
 public class TicketGui extends javax.swing.JFrame {
-    
+
     ModeloTicketEntiti ticket;
-    
+
     public TicketGui() {
         initComponents();
         this.setResizable(false);
@@ -20,45 +20,45 @@ public class TicketGui extends javax.swing.JFrame {
         this.cargarImagenes();
         this.cargarModeloTicket();
     }
-    
+
     public void OcultarOpcionesSession() {
-        
+
         switch (StateApp.ses_tipo) {
-            
+
             case EstadosApp.SESSION_ADMIN:
                 break;
-            
+
             case EstadosApp.SESSION_EMPLEADO:
                 this.quitarEventosAdmin();
                 break;
-            
+
             default:
                 this.quitarEventosTodos();
                 break;
-            
+
         }
-        
+
     }
-    
+
     public void quitarEventosAdmin() {
-        
+
         jbtn_balanza.setEnabled(false);
         jbtn_respaldo.setEnabled(false);
-        
+
         MouseListener[] mListener = jbtn_balanza.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_balanza.removeMouseListener(ml);
         }
-        
+
         mListener = jbtn_respaldo.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_respaldo.removeMouseListener(ml);
         }
-        
+
     }
-    
+
     public void quitarEventosTodos() {
-        
+
         jbtn_balanza.setEnabled(false);
         jbtn_tickets.setEnabled(false);
         jbtn_balanza.setEnabled(false);
@@ -67,62 +67,62 @@ public class TicketGui extends javax.swing.JFrame {
         jbtn_proceso_pesaje.setEnabled(false);
         jbtn_respaldo.setEnabled(false);
         jbtn_cambiar_usuario.setEnabled(false);
-        
+
         MouseListener[] mListener = jbtn_balanza.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_respaldo.removeMouseListener(ml);
         }
-        
+
         mListener = jbtn_tickets.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_tickets.removeMouseListener(ml);
         }
-        
+
         mListener = jbtn_mantenimiento.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_mantenimiento.removeMouseListener(ml);
         }
-        
+
         mListener = jbtn_reportes.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_reportes.removeMouseListener(ml);
         }
-        
+
         mListener = jbtn_proceso_pesaje.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_proceso_pesaje.removeMouseListener(ml);
         }
-        
+
         mListener = jbtn_respaldo.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_respaldo.removeMouseListener(ml);
         }
-        
+
         mListener = jbtn_cambiar_usuario.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_cambiar_usuario.removeMouseListener(ml);
         }
-        
+
     }
-    
+
     public void cargarImagenes() {
-        
+
         rsscalelabel.RSScaleLabel.setScaleLabel(jlbl_logo, Rutas.DIR_ASSETS_IMAGES + "login.png");
 
         //PROCESO DE TICKET
         //rsscalelabel.RSScaleLabel.setScaleLabel(jlbl_proceso_peaje_capturar, Rutas.DIR_ASSETS_IMAGES + "capturarkg.png");
     }
-    
+
     public void cargarModeloTicket() {
-        
+
         ticket = ModeloTicketController.getModeloTicket();
-        
+
         jlbl_pie_pagina_ticket.setText(ticket.getModtic_pie_pagina());
         jlbl_subtitulo_ticket.setText(ticket.getMod_sub_titulo());
         jlbl_titulo_ticket.setText(ticket.getModtic_titulo());
-        
+
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -251,6 +251,11 @@ public class TicketGui extends javax.swing.JFrame {
         jbtn_balanza.setText("BALANZA");
         jbtn_balanza.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtn_balanza.setOpaque(true);
+        jbtn_balanza.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtn_balanzaMouseClicked(evt);
+            }
+        });
 
         jbtn_respaldo.setBackground(new java.awt.Color(255, 255, 255));
         jbtn_respaldo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -405,12 +410,13 @@ public class TicketGui extends javax.swing.JFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jtxt_proceso_ticket_sub_titulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
-                    .addComponent(jtxt_proceso_ticket_pie_pagina, javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jtxt_proceso_ticket_pie_pagina, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jlbl_proceso_ticket_guardar, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
+                    .addComponent(jtxt_proceso_ticket_sub_titulo)
                     .addComponent(jtxt_proceso_ticket_titulo))
-                .addGap(18, 18, 18)
-                .addComponent(jlbl_proceso_ticket_guardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -770,8 +776,10 @@ public class TicketGui extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtn_respaldoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_respaldoMouseClicked
-        
 
+        BackupGui v = new BackupGui();
+        v.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jbtn_respaldoMouseClicked
 
     private void jbtn_cambiar_usuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_cambiar_usuarioMouseClicked
@@ -781,15 +789,15 @@ public class TicketGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtn_cambiar_usuarioMouseClicked
 
     private void jlbl_proceso_ticket_guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbl_proceso_ticket_guardarMouseClicked
-        
+
         String ticket_titulo = jtxt_proceso_ticket_titulo.getText();
         String ticket_sub_titulo = jtxt_proceso_ticket_sub_titulo.getText();
         String ticket_pie_pagina = jtxt_proceso_ticket_pie_pagina.getText();
-        
+
         ModeloTicketController.updateModeloTicket(ticket_titulo, ticket_sub_titulo, ticket_pie_pagina, ticket.getModtic_id());
-        
+
         this.cargarModeloTicket();
-        
+
     }//GEN-LAST:event_jlbl_proceso_ticket_guardarMouseClicked
 
     private void jbtn_proceso_pesajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_proceso_pesajeMouseClicked
@@ -799,7 +807,7 @@ public class TicketGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtn_proceso_pesajeMouseClicked
 
     private void jbtn_reportesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_reportesMouseClicked
-         ReporteGui v = new ReporteGui();
+        ReporteGui v = new ReporteGui();
         v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbtn_reportesMouseClicked
@@ -809,17 +817,21 @@ public class TicketGui extends javax.swing.JFrame {
         v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbtn_mantenimientoMouseClicked
-    
+
+    private void jbtn_balanzaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_balanzaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtn_balanzaMouseClicked
+
     public static void main(String args[]) {
         try {
-            
+
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-            
+
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TicketGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }

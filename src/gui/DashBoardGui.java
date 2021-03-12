@@ -36,7 +36,7 @@ public class DashBoardGui extends javax.swing.JFrame {
         this.cargarImagenes();
         this.generateNewTicket();
         this.getTicketsPendientes();
-        this.createPlaceHolder();
+
     }
 
     public void OcultarOpcionesSession() {
@@ -275,23 +275,25 @@ public class DashBoardGui extends javax.swing.JFrame {
 
     }
 
-    public void createPlaceHolder() {
-
-        PlaceHolder placeholder = new PlaceHolder(jtxt_buscar_pendientes, "Buscar");
-
-    }
-
     public void registrarPesajeSalida() {
-        String pes_fecha_salida = jtxt_fecha_salida.getText();
-        String pes_hora_salida = jtxt_hora_salida.getText();
-        double pes_peso_salida = Double.parseDouble(jtxt_peso_salida.getText());
-        double pes_neto = Double.parseDouble(jtxt_peso_neto.getText());
-        double pes_bruto = Double.parseDouble(jtxt_peso_bruto.getText());
 
-        PesajeController.updatePesajeSalida(pesajeTicket.getTic_pes_id().getPes_id(), pes_fecha_salida, pes_hora_salida, pes_peso_salida, pes_neto, pes_bruto);
-        clearForm();
-        getTicketsPendientes();
-        peso_ingreso = true;
+        if (jtxt_fecha_salida.getText().isEmpty() == false) {
+
+            String pes_fecha_salida = jtxt_fecha_salida.getText();
+            String pes_hora_salida = jtxt_hora_salida.getText();
+            double pes_peso_salida = Double.parseDouble(jtxt_peso_salida.getText());
+            double pes_neto = Double.parseDouble(jtxt_peso_neto.getText());
+            double pes_bruto = Double.parseDouble(jtxt_peso_bruto.getText());
+
+            PesajeController.updatePesajeSalida(pesajeTicket.getTic_pes_id().getPes_id(), pes_fecha_salida, pes_hora_salida, pes_peso_salida, pes_neto, pes_bruto);
+            clearForm();
+            getTicketsPendientes();
+            peso_ingreso = true;
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Capture el pesaje de Salida");
+
+        }
 
     }
 
@@ -326,7 +328,6 @@ public class DashBoardGui extends javax.swing.JFrame {
         jPanel22 = new javax.swing.JPanel();
         jlbl_peso_balanza = new javax.swing.JLabel();
         jlbl_proceso_pesaje_actualizar_valanza = new javax.swing.JLabel();
-        jtxt_buscar_pendientes = new javax.swing.JTextField();
         jlbl_refrescar_tabla = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -466,6 +467,11 @@ public class DashBoardGui extends javax.swing.JFrame {
         jbtn_balanza.setText("BALANZA");
         jbtn_balanza.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtn_balanza.setOpaque(true);
+        jbtn_balanza.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtn_balanzaMouseClicked(evt);
+            }
+        });
 
         jbtn_respaldo.setBackground(new java.awt.Color(255, 255, 255));
         jbtn_respaldo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -511,7 +517,7 @@ public class DashBoardGui extends javax.swing.JFrame {
                 .addComponent(jbtn_balanza, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jbtn_respaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addGap(10, 10, 10)
@@ -705,9 +711,6 @@ public class DashBoardGui extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jtxt_buscar_pendientes.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jtxt_buscar_pendientes.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
         jlbl_refrescar_tabla.setBackground(new java.awt.Color(255, 51, 102));
         jlbl_refrescar_tabla.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jlbl_refrescar_tabla.setForeground(new java.awt.Color(255, 255, 255));
@@ -731,10 +734,7 @@ public class DashBoardGui extends javax.swing.JFrame {
                     .addComponent(jPanel21, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jtxt_buscar_pendientes, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jlbl_refrescar_tabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jlbl_refrescar_tabla, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -745,9 +745,7 @@ public class DashBoardGui extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jtxt_buscar_pendientes, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(jlbl_refrescar_tabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jlbl_refrescar_tabla, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -855,19 +853,19 @@ public class DashBoardGui extends javax.swing.JFrame {
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(43, 43, 43)
+                        .addGap(49, 49, 49)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(jtxt_placa_movilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jtxt_placa_movilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtxt_tara_referencial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jtxt_tara_referencial, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
                             .addComponent(jtxt_producto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel7Layout.createSequentialGroup()
-                                .addComponent(jtxt_empresa_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jtxt_empresa_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jtxt_empresa_ruc, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jcb_conductor, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -1077,6 +1075,11 @@ public class DashBoardGui extends javax.swing.JFrame {
 
         jlbl_proceso_peaje_copia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbl_proceso_peaje_copia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlbl_proceso_peaje_copia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlbl_proceso_peaje_copiaMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -1117,7 +1120,7 @@ public class DashBoardGui extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jlbl_proceso_peaje_peso_rapido, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
-            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 86, Short.MAX_VALUE)
+            .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1133,6 +1136,11 @@ public class DashBoardGui extends javax.swing.JFrame {
 
         jlbl_proceso_peaje_salir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbl_proceso_peaje_salir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlbl_proceso_peaje_salir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlbl_proceso_peaje_salirMouseClicked(evt);
+            }
+        });
 
         jLabel20.setBackground(new java.awt.Color(9, 113, 195));
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -1206,13 +1214,17 @@ public class DashBoardGui extends javax.swing.JFrame {
         jLabel21.setText("INGRESO");
 
         jlbl_proceso_peaje_resetear_ingreso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlbl_proceso_peaje_resetear_ingreso.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlbl_proceso_peaje_resetear_ingresoMouseClicked(evt);
+            }
+        });
 
         jtxt_fecha_ingreso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jtxt_fecha_ingreso.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jtxt_fecha_ingreso.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jtxt_fecha_ingreso.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jtxt_fecha_ingreso.setEnabled(false);
-        jtxt_fecha_ingreso.setOpaque(true);
 
         jtxt_hora_ingreso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jtxt_hora_ingreso.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -1290,6 +1302,11 @@ public class DashBoardGui extends javax.swing.JFrame {
         jLabel22.setText("SALIDA");
 
         jlbl_proceso_peaje_resetear_salida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlbl_proceso_peaje_resetear_salida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlbl_proceso_peaje_resetear_salidaMouseClicked(evt);
+            }
+        });
 
         jLabel27.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel27.setText("PESO");
@@ -1587,13 +1604,16 @@ public class DashBoardGui extends javax.swing.JFrame {
 
     private void jlbl_proceso_peaje_imprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbl_proceso_peaje_imprimirMouseClicked
 
-        if (jtxt_fecha_salida.getText().isEmpty()) {
-            TicketIngresoGui ingreso_v = new TicketIngresoGui();
-            ingreso_v.setVisible(true);
-        } else {
+        if (pesajeTicket != null) {
 
-            TicketSalidaGui salida_v = new TicketSalidaGui();
-            salida_v.setVisible(true);
+            if (jtxt_fecha_salida.getText().isEmpty()) {
+                TicketIngresoGui ingreso_v = new TicketIngresoGui();
+                ingreso_v.setVisible(true);
+            } else {
+
+                TicketSalidaGui salida_v = new TicketSalidaGui();
+                salida_v.setVisible(true);
+            }
         }
 
     }//GEN-LAST:event_jlbl_proceso_peaje_imprimirMouseClicked
@@ -1668,6 +1688,40 @@ public class DashBoardGui extends javax.swing.JFrame {
     private void jLabel33MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel33MouseClicked
         jlbl_peso_balanza.setText("0KG");
     }//GEN-LAST:event_jLabel33MouseClicked
+
+    private void jlbl_proceso_peaje_copiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbl_proceso_peaje_copiaMouseClicked
+        if (pesajeTicket != null) {
+
+            if (jtxt_fecha_salida.getText().isEmpty()) {
+                TicketIngresoGui ingreso_v = new TicketIngresoGui();
+                ingreso_v.setVisible(true);
+            } else {
+
+                TicketSalidaGui salida_v = new TicketSalidaGui();
+                salida_v.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_jlbl_proceso_peaje_copiaMouseClicked
+
+    private void jlbl_proceso_peaje_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbl_proceso_peaje_salirMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jlbl_proceso_peaje_salirMouseClicked
+
+    private void jlbl_proceso_peaje_resetear_ingresoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbl_proceso_peaje_resetear_ingresoMouseClicked
+        jtxt_fecha_ingreso.setText(LocalDate.now().toString());
+        jtxt_hora_ingreso.setText(LocalTime.now().toString());
+        jtxt_peso_ingreso.setText(jlbl_peso_balanza.getText().split("KG")[0]);
+    }//GEN-LAST:event_jlbl_proceso_peaje_resetear_ingresoMouseClicked
+
+    private void jlbl_proceso_peaje_resetear_salidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbl_proceso_peaje_resetear_salidaMouseClicked
+        jtxt_fecha_salida.setText(LocalDate.now().toString());
+        jtxt_hora_salida.setText(LocalTime.now().toString());
+        jtxt_peso_salida.setText(jlbl_peso_balanza.getText().split("KG")[0]);
+    }//GEN-LAST:event_jlbl_proceso_peaje_resetear_salidaMouseClicked
+
+    private void jbtn_balanzaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_balanzaMouseClicked
+        
+    }//GEN-LAST:event_jbtn_balanzaMouseClicked
 
     public static void main(String args[]) {
         try {
@@ -1769,7 +1823,6 @@ public class DashBoardGui extends javax.swing.JFrame {
     private javax.swing.JLabel jlbl_proceso_pesaje_actualizar_valanza;
     private javax.swing.JLabel jlbl_refrescar_tabla;
     private javax.swing.JTable jtbl_proceso_pesaje_pendientes;
-    private javax.swing.JTextField jtxt_buscar_pendientes;
     private javax.swing.JTextField jtxt_empresa_nombre;
     private javax.swing.JTextField jtxt_empresa_ruc;
     private javax.swing.JTextField jtxt_fecha_ingreso;
