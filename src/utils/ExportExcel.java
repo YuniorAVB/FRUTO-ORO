@@ -1,7 +1,7 @@
-
 package utils;
 
 import config.DataBase;
+import config.MensajeError;
 import config.Rutas;
 import db.Conexion;
 
@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.sql.Statement;
+import java.time.LocalDate;
+import javax.swing.JOptionPane;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -23,8 +25,10 @@ public class ExportExcel {
         try {
 
             PreparedStatement psmnt = null;
-            Statement st = Conexion.getConexion().createStatement();
-            try (ResultSet rs = st.executeQuery("Select * from " + tabla)) {
+
+            try (Statement st = Conexion.getConexion().createStatement()) {
+
+                ResultSet rs = st.executeQuery("Select * from " + DataBase.TBL_PESAJE + " WHERE pes_peso_salida IS NOT NULL");
                 HSSFWorkbook wb = new HSSFWorkbook();
                 HSSFSheet sheet = wb.createSheet("Excel Sheet");
                 HSSFRow rowhead = sheet.createRow((short) 0);
@@ -64,19 +68,18 @@ public class ExportExcel {
                     row.createCell((short) 9).setCellValue(rs.getString("pes_producto"));
                     index++;
                 }
-                FileOutputStream fileOut = new FileOutputStream(Rutas.DIR_HOME + "\\home.xlsx");
+
+                String dateNow = LocalDate.now().toString();
+                FileOutputStream fileOut = new FileOutputStream(Rutas.DIR_HOME + "\\Excel" + dateNow + "-FRUTO_ORO.xlsx");
                 wb.write(fileOut);
+                JOptionPane.showMessageDialog(null, "EXCEL CREADO CORRECTAMENTE");
 
             }
 
         } catch (IOException | SQLException e) {
+            JOptionPane.showMessageDialog(null, MensajeError.ERROR_LLAME_AL_PROGRAMADOR);
         }
 
     }
 
-    public static void main(String[] args) throws Exception {
-
-        ExportExcel.generateExcel(DataBase.TBL_PESAJE);
-
-    }
 }

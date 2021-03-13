@@ -141,76 +141,90 @@ public class TicketIngresoGui extends javax.swing.JFrame implements Printable {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jpnl_imprimir.setBackground(new java.awt.Color(255, 255, 255));
-        jpnl_imprimir.setBorder(null);
 
-        jlbl_titulo_ticket2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jlbl_titulo_ticket2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jlbl_titulo_ticket2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jlbl_titulo_ticket2.setText("FRUTO DE ORO");
 
-        jlbl_subtitulo_ticket2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jlbl_subtitulo_ticket2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jlbl_subtitulo_ticket2.setText("Sistema de pesaje automatico");
 
-        jLabel64.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel64.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel64.setText("TICKET");
 
+        jlbl_numero_ticket.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jlbl_numero_ticket.setText("00000251");
 
-        jLabel66.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel66.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel66.setText("RUC");
 
+        jlbl_ruc.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jlbl_ruc.setText("00000251");
 
-        jLabel68.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel68.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel68.setText("DNI");
 
+        jlbl_dni.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jlbl_dni.setText("12345678");
 
-        jLabel70.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel70.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel70.setText("PROCEDENCIA");
 
+        jlbl_procedencia.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jlbl_procedencia.setText("PISCO");
 
-        jLabel72.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel72.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel72.setText("DESTINO");
 
+        jlbl_destino.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jlbl_destino.setText("SAN CLEMENTE");
 
-        jLabel76.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel76.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel76.setText("PRODUCTO");
 
+        jlbl_producto.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jlbl_producto.setText("LECHE FRESCA");
 
-        jLabel78.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel78.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel78.setText("PLACA");
 
+        jlbl_placa.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jlbl_placa.setText("C9CKE");
 
-        jLabel80.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel80.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel80.setText("EMPRESA");
 
+        jlbl_empresa.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jlbl_empresa.setText("GLORIA");
 
-        jLabel82.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel82.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel82.setText("CHOFER");
 
+        jlbl_nombre_chofer.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jlbl_nombre_chofer.setText("HERACIO FERNANDEZ");
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel84.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel84.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel84.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel84.setText("P. PESADA");
 
+        jLabel85.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel85.setText("FECHA");
 
+        jLabel86.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel86.setText("HORA");
 
+        jLabel87.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel87.setText("PESO");
 
+        jlbl_fecha_ingreso.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jlbl_fecha_ingreso.setText("2021/01/16");
 
+        jlbl_hora_ingreso.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jlbl_hora_ingreso.setText("11:05:22");
 
+        jlbl_peso_ingreso.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jlbl_peso_ingreso.setText("14760KG");
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
@@ -254,7 +268,7 @@ public class TicketIngresoGui extends javax.swing.JFrame implements Printable {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jlbl_pie_pagina_ticket.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jlbl_pie_pagina_ticket.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jlbl_pie_pagina_ticket.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbl_pie_pagina_ticket.setText("GRACIAS POR SU VISITA");
 
@@ -347,19 +361,18 @@ public class TicketIngresoGui extends javax.swing.JFrame implements Printable {
                 .addGroup(jpnl_imprimirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel76)
                     .addComponent(jlbl_producto))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlbl_pie_pagina_ticket, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlbl_pie_pagina_ticket, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jbtn_imprimir.setBackground(new java.awt.Color(51, 102, 255));
+        jbtn_imprimir.setBackground(java.awt.Color.lightGray);
         jbtn_imprimir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jbtn_imprimir.setForeground(new java.awt.Color(255, 255, 255));
         jbtn_imprimir.setText("IMPRIMIR TICKET");
         jbtn_imprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbtn_imprimir.setOpaque(true);
+        jbtn_imprimir.setOpaque(false);
         jbtn_imprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtn_imprimirActionPerformed(evt);
@@ -381,7 +394,7 @@ public class TicketIngresoGui extends javax.swing.JFrame implements Printable {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jbtn_imprimir, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                .addComponent(jbtn_imprimir, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jpnl_imprimir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())

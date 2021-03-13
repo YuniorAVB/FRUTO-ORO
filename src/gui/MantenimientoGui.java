@@ -10,11 +10,9 @@ import entities.ConductorEntiti;
 import entities.EmpleadoEntiti;
 import entities.EmpresaEntiti;
 import entities.MovilidadEntiti;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
@@ -31,6 +29,7 @@ public class MantenimientoGui extends javax.swing.JFrame {
     TableRowSorter<DefaultTableModel> buscar;
     static String tipo_mantenimiento = "EMPLEADOS";
     static int id_objeto = -1;
+    DefaultComboBoxModel<String> modelo_tipo_mantenimiento;
 
     public MantenimientoGui() {
         initComponents();
@@ -47,6 +46,7 @@ public class MantenimientoGui extends javax.swing.JFrame {
         switch (StateApp.ses_tipo) {
 
             case EstadosApp.SESSION_ADMIN:
+                agregarOpcionesMantenimiento();
                 break;
 
             case EstadosApp.SESSION_EMPLEADO:
@@ -58,6 +58,14 @@ public class MantenimientoGui extends javax.swing.JFrame {
                 break;
 
         }
+
+    }
+
+    public void agregarOpcionesMantenimiento() {
+
+        modelo_tipo_mantenimiento = (DefaultComboBoxModel<String>) jcb_tipo_mantenimiento.getModel();
+
+        modelo_tipo_mantenimiento.addElement("EMPLEADOS");
 
     }
 
@@ -130,8 +138,6 @@ public class MantenimientoGui extends javax.swing.JFrame {
 
         rsscalelabel.RSScaleLabel.setScaleLabel(jlbl_logo, Rutas.DIR_ASSETS_IMAGES + "login.png");
 
-        //PROCESO DE TICKET
-        //rsscalelabel.RSScaleLabel.setScaleLabel(jlbl_proceso_peaje_capturar, Rutas.DIR_ASSETS_IMAGES + "capturarkg.png");
     }
 
     public void centrarTabla() {
@@ -568,7 +574,7 @@ public class MantenimientoGui extends javax.swing.JFrame {
     jLabel2.setText("OPCIONES");
 
     jcb_tipo_mantenimiento.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-    jcb_tipo_mantenimiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EMPLEADOS", "EMPRESAS", "MOVILIDAD", "CONDUCTOR" }));
+    jcb_tipo_mantenimiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EMPRESAS", "MOVILIDAD", "CONDUCTOR" }));
     jcb_tipo_mantenimiento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
     jcb_tipo_mantenimiento.addItemListener(new java.awt.event.ItemListener() {
         public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -758,7 +764,7 @@ public class MantenimientoGui extends javax.swing.JFrame {
 
     private void jbtn_respaldoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_respaldoMouseClicked
         BackupGui v = new BackupGui();
-        
+
         v.setVisible(true);
         this.dispose();
 
@@ -885,9 +891,9 @@ public class MantenimientoGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jtxt_buscarKeyReleased
 
     private void jbtn_reportesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_reportesMouseClicked
-       ReporteGui v = new ReporteGui();
-       v.setVisible(true);
-       this.dispose();
+        ReporteGui v = new ReporteGui();
+        v.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jbtn_reportesMouseClicked
 
     public static void main(String args[]) {

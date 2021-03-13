@@ -1,5 +1,6 @@
 package gui;
 
+import config.DataBase;
 import config.Rutas;
 import config.EstadosApp;
 import entities.ModeloTicketEntiti;
@@ -9,10 +10,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 
 import state.StateApp;
+import utils.ExportExcel;
 
 public class ReporteGui extends javax.swing.JFrame {
 
@@ -498,7 +502,7 @@ public class ReporteGui extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtn_respaldoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_respaldoMouseClicked
-        
+
         BackupGui v = new BackupGui();
         v.setVisible(true);
         this.dispose();
@@ -538,14 +542,18 @@ public class ReporteGui extends javax.swing.JFrame {
 
     private void jlbl_generar_reporteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbl_generar_reporteMouseClicked
 
-        String fechaDesde = sdf.format(jdt_fecha_desde.getDate());
+       /* String fechaDesde = sdf.format(jdt_fecha_desde.getDate());
         String fechaHasta = sdf.format(jdt_fecha_hasta.getDate());
-        
-        System.out.println(fechaDesde+fechaHasta);
 
-        
+        System.out.println(fechaDesde + fechaHasta);*/
 
-       
+        try {
+            ExportExcel.generateExcel(DataBase.TBL_PESAJE);
+        } catch (Exception ex) {
+            Logger.getLogger(ReporteGui.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
     }//GEN-LAST:event_jlbl_generar_reporteMouseClicked
 
     public static void main(String args[]) {

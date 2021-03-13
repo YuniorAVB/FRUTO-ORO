@@ -276,6 +276,31 @@ public class PesajeModel {
 
     }
 
+    public static boolean checkTicketSalidaById(PesajeEntiti pesaje) {
+
+        boolean result = false;
+
+        if (pesaje != null) {
+            try {
+                PreparedStatement stm = Conexion.getConexion().prepareStatement("SELECT * FROM " + DataBase.TBL_PESAJE
+                        + " WHERE pes_id LIKE ? AND pes_peso_salida IS NOT NULL ");
+
+                stm.setInt(1, pesaje.getPes_id());
+
+                ResultSet rs = stm.executeQuery();
+
+                while (rs.next()) {
+                    result = true;
+                }
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, MensajeError.ERROR_LLAME_AL_PROGRAMADOR);
+            }
+        }
+        return result;
+
+    }
+
     public static boolean deletePesaje(PesajeEntiti pesaje) {
 
         int result = 0;

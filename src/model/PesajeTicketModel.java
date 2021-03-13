@@ -131,8 +131,8 @@ public class PesajeTicketModel {
 
         return ticket_buscado;
     }
-    
-     public static PesajeTicketEntiti getPesajeTicketIngresoByTicket(PesajeTicketEntiti ticket) {
+
+    public static PesajeTicketEntiti getPesajeTicketIngresoByTicket(PesajeTicketEntiti ticket) {
 
         PesajeTicketEntiti ticket_buscado = null;
 
@@ -161,9 +161,36 @@ public class PesajeTicketModel {
 
         return ticket_buscado;
     }
-    
-    
-    
+
+    public static PesajeTicketEntiti getPesajeTicketByTicket(PesajeTicketEntiti ticket) {
+
+        PesajeTicketEntiti ticket_buscado = null;
+
+        try {
+            PreparedStatement stm = Conexion.getConexion().prepareStatement("SELECT * FROM " + DataBase.TBL_PESAJE_TICKET + " WHERE tic_serie_numero = ?;");
+
+            stm.setInt(1, ticket.getTic_serie_numero());
+
+            ResultSet rs = stm.executeQuery();
+
+            while (rs.next()) {
+
+                int tic_id = rs.getInt("tic_id");
+                int tic_pes_id = rs.getInt("tic_pes_id");
+                int tic_serie_numero = rs.getInt("tic_serie_numero");
+
+                PesajeEntiti pesaje = PesajeModel.getPesajeById(new PesajeEntiti(tic_pes_id));
+
+                ticket_buscado = new PesajeTicketEntiti(tic_id, pesaje, tic_serie_numero);
+
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, MensajeError.ERROR_LLAME_AL_PROGRAMADOR);
+        }
+
+        return ticket_buscado;
+    }
 
     public static boolean insertTicketPesaje(PesajeTicketEntiti ticket) {
 

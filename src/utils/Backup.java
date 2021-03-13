@@ -6,11 +6,12 @@
 package utils;
 
 import config.DataBase;
+import config.Rutas;
 import java.awt.HeadlessException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.stream.Stream;
 import javax.swing.JOptionPane;
@@ -19,8 +20,8 @@ public class Backup {
 
     public static void generarBackup(String nombre) {
 
-        String nameBackup = nombre + "-"
-                + LocalDateTime.now().toString() + ".sql";
+        String nameBackup = Rutas.DIR_HOME + "\\" + nombre + "-"
+                + LocalDate.now().toString() + ".sql";
 
         Thread thread = new Thread(() -> {
             try {
@@ -55,15 +56,15 @@ public class Backup {
 
         String[] executeCmd = Stream.of(DataBase.DB_BACKUP_RESTORE, files).flatMap(Stream::of).toArray(String[]::new);
 
-            System.out.println(Arrays.toString(executeCmd));
-        
+        System.out.println(Arrays.toString(executeCmd));
+
         Thread thread = new Thread(() -> {
             try {
-                //  Process runtimeProcess = Runtime.getRuntime().exec(executeCmd);
+                Process runtimeProcess = Runtime.getRuntime().exec(executeCmd);
 
-                Process runtimeProcess = Runtime
+                /*Process runtimeProcess = Runtime
                         .getRuntime()
-                        .exec(DataBase.DB_BACKUP_RESTORE_STRING + " source " + fileBackup);
+                        .exec(DataBase.DB_BACKUP_RESTORE_STRING + " source " + fileBackup);*/
                 int processComplete = runtimeProcess.waitFor();
 
                 if (processComplete == 0) {
@@ -73,6 +74,7 @@ public class Backup {
                 }
             } catch (HeadlessException | IOException | InterruptedException e) {
                 System.out.println(e.getMessage());
+                System.out.println(e.getCause());
             }
         });
 

@@ -8,9 +8,9 @@ public class DataBase {
     final static public String DB_PORT = "3306";
     final static public String DB_HOST = "localhost";
 
-    final static public String DB_RUTA_INSTALL_GENERATE = "/opt/lampp/bin/mysqldump ";
+    final static public String DB_RUTA_INSTALL_GENERATE = "C:\\xampp\\mysql\\bin\\mysqldump ";
 
-    final static public String DB_RUTA_INSTALL_RESTORE = "/opt/lampp/bin/mysqldump ";
+    final static public String DB_RUTA_INSTALL_RESTORE = "C:\\xampp\\mysql\\bin\\mysql ";
 
     final static public String DB_BACKUP_GENERATE = DB_RUTA_INSTALL_GENERATE + " -u " + DB_USER + " -p" + DB_PASSWORD + " " + DB_NAME;
 

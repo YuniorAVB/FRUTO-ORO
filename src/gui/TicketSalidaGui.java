@@ -1,10 +1,12 @@
 package gui;
 
-import controller.ModeloTicketController;
+import controller.EmpresaMovilidadController;
+import controller.PesajeTicketController;
+import entities.EmpresaMovilidadEntiti;
 import entities.ModeloTicketEntiti;
+import entities.PesajeTicketEntiti;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import static java.awt.print.Printable.NO_SUCH_PAGE;
@@ -22,15 +24,24 @@ public class TicketSalidaGui extends javax.swing.JFrame implements Printable {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.cargarModeloTicket();
+        getDatosTicket();
+
     }
 
-    public void cargarModeloTicket() {
+    public void getDatosTicket() {
+        int ticketSerie = DashBoardGui.pesajeTicket.getTic_serie_numero();
 
-        ticket = ModeloTicketController.getModeloTicket();
+        PesajeTicketEntiti ticket_pesaje = PesajeTicketController.getBuscarTicketByTicket(ticketSerie);
 
-        if (ticket != null) {
+        if (ticket_pesaje != null) {
 
+            jlbl_fecha_salida.setText(ticket_pesaje.getTic_pes_id().getPes_fecha_salida());
+            jlbl_hora_salida.setText(ticket_pesaje.getTic_pes_id().getPes_hora_salida());
+            jlbl_peso_salida.setText(String.valueOf(ticket_pesaje.getTic_pes_id().getPes_peso_salida()));
+
+            jlbl_peso_bruto.setText(String.valueOf(ticket_pesaje.getTic_pes_id().getPes_bruto()));
+            jlbl_tara.setText(String.valueOf(ticket_pesaje.getTic_pes_id().getPes_tara()));
+            jlbl_peso_neto.setText(String.valueOf(ticket_pesaje.getTic_pes_id().getPes_neto()));
         }
 
     }
@@ -91,24 +102,29 @@ public class TicketSalidaGui extends javax.swing.JFrame implements Printable {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jpnl_imprimir.setBackground(new java.awt.Color(255, 255, 255));
-        jpnl_imprimir.setBorder(null);
 
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel88.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel88.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel88.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel88.setText("P. SALIDA");
 
+        jLabel89.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel89.setText("FECHA");
 
+        jLabel90.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel90.setText("HORA");
 
+        jLabel91.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel91.setText("PESO");
 
+        jlbl_fecha_salida.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jlbl_fecha_salida.setText("2021/01/16");
 
+        jlbl_hora_salida.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jlbl_hora_salida.setText("11:05:22");
 
+        jlbl_peso_salida.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jlbl_peso_salida.setText("14760KG");
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
@@ -153,20 +169,26 @@ public class TicketSalidaGui extends javax.swing.JFrame implements Printable {
 
         jPanel18.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel104.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel104.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel104.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel104.setText("PESOS");
 
+        jLabel105.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel105.setText("NETO");
 
+        jLabel106.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel106.setText("TARA");
 
+        jLabel107.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel107.setText("BRUTO");
 
+        jlbl_peso_neto.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jlbl_peso_neto.setText("2021/01/16");
 
+        jlbl_tara.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jlbl_tara.setText("11:05:22");
 
+        jlbl_peso_bruto.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jlbl_peso_bruto.setText("14760KG");
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
@@ -228,15 +250,13 @@ public class TicketSalidaGui extends javax.swing.JFrame implements Printable {
                 .addGroup(jpnl_imprimirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
-        jbtn_imprimir.setBackground(new java.awt.Color(51, 102, 255));
+        jbtn_imprimir.setBackground(new java.awt.Color(204, 204, 204));
         jbtn_imprimir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jbtn_imprimir.setForeground(new java.awt.Color(255, 255, 255));
         jbtn_imprimir.setText("IMPRIMIR TICKET");
         jbtn_imprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbtn_imprimir.setOpaque(true);
         jbtn_imprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtn_imprimirActionPerformed(evt);
@@ -258,7 +278,7 @@ public class TicketSalidaGui extends javax.swing.JFrame implements Printable {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jbtn_imprimir, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                .addComponent(jbtn_imprimir, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jpnl_imprimir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -304,10 +324,6 @@ public class TicketSalidaGui extends javax.swing.JFrame implements Printable {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel100;
-    private javax.swing.JLabel jLabel101;
-    private javax.swing.JLabel jLabel102;
-    private javax.swing.JLabel jLabel103;
     private javax.swing.JLabel jLabel104;
     private javax.swing.JLabel jLabel105;
     private javax.swing.JLabel jLabel106;
@@ -316,33 +332,13 @@ public class TicketSalidaGui extends javax.swing.JFrame implements Printable {
     private javax.swing.JLabel jLabel89;
     private javax.swing.JLabel jLabel90;
     private javax.swing.JLabel jLabel91;
-    private javax.swing.JLabel jLabel92;
-    private javax.swing.JLabel jLabel93;
-    private javax.swing.JLabel jLabel94;
-    private javax.swing.JLabel jLabel95;
-    private javax.swing.JLabel jLabel96;
-    private javax.swing.JLabel jLabel97;
-    private javax.swing.JLabel jLabel98;
-    private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JButton jbtn_imprimir;
-    private javax.swing.JLabel jlbl_fecha_ingreso2;
-    private javax.swing.JLabel jlbl_fecha_ingreso3;
-    private javax.swing.JLabel jlbl_fecha_ingreso4;
     private javax.swing.JLabel jlbl_fecha_salida;
-    private javax.swing.JLabel jlbl_hora_ingreso2;
-    private javax.swing.JLabel jlbl_hora_ingreso3;
-    private javax.swing.JLabel jlbl_hora_ingreso4;
     private javax.swing.JLabel jlbl_hora_salida;
     private javax.swing.JLabel jlbl_peso_bruto;
-    private javax.swing.JLabel jlbl_peso_ingreso2;
-    private javax.swing.JLabel jlbl_peso_ingreso3;
-    private javax.swing.JLabel jlbl_peso_ingreso4;
     private javax.swing.JLabel jlbl_peso_neto;
     private javax.swing.JLabel jlbl_peso_salida;
     private javax.swing.JLabel jlbl_tara;
