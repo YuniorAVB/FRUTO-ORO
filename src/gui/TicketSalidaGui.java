@@ -38,7 +38,11 @@ public class TicketSalidaGui extends javax.swing.JFrame implements Printable {
             jlbl_fecha_salida.setText(ticket_pesaje.getTic_pes_id().getPes_fecha_salida());
             jlbl_hora_salida.setText(ticket_pesaje.getTic_pes_id().getPes_hora_salida());
             jlbl_peso_salida.setText(String.valueOf(ticket_pesaje.getTic_pes_id().getPes_peso_salida()));
-
+            
+            System.out.println(ticket_pesaje.getTic_pes_id().getPes_bruto());
+            System.out.println(ticket_pesaje.getTic_pes_id().getPes_bruto());
+            System.out.println(ticket_pesaje.getTic_pes_id().getPes_neto());
+            
             jlbl_peso_bruto.setText(String.valueOf(ticket_pesaje.getTic_pes_id().getPes_bruto()));
             jlbl_tara.setText(String.valueOf(ticket_pesaje.getTic_pes_id().getPes_tara()));
             jlbl_peso_neto.setText(String.valueOf(ticket_pesaje.getTic_pes_id().getPes_neto()));

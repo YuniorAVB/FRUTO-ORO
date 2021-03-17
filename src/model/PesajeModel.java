@@ -37,12 +37,15 @@ public class PesajeModel {
                 String pes_hora_ingreso = rs.getString("pes_hora_ingreso");
                 String pes_hora_salida = rs.getString("pes_hora_salida");
                 double pes_tara = rs.getDouble("pes_tara");
+                double pes_neto = rs.getDouble("pes_neto");
+                double pes_bruto = rs.getDouble("pes_bruto");
+                String pes_producto = rs.getString("pes_producto");
 
                 MovilidadEntiti movilidad = MovilidadModel.getMovilidadById(new MovilidadEntiti(pes_mov_id));
                 EmpleadoEntiti empleado = EmpleadoModel.getEmpleadoById(new EmpleadoEntiti(pes_emp_id));
                 ConductorEntiti conductor = ConductorModel.getConductorById(new ConductorEntiti(pes_con_id));
 
-                PesajeEntiti pesaje = new PesajeEntiti(movilidad, empleado, conductor, pes_fecha_ingreso, pes_fecha_salida, pes_peso_ingreso, pes_peso_salida, pes_hora_ingreso, pes_hora_salida, pes_tara);
+                PesajeEntiti pesaje = new PesajeEntiti(pes_id, movilidad, empleado, conductor, pes_fecha_ingreso, pes_fecha_salida, pes_peso_ingreso, pes_peso_salida, pes_hora_ingreso, pes_hora_salida, pes_tara, pes_neto, pes_bruto, pes_producto);
 
                 pesaje_lista.add(pesaje);
             }
@@ -77,12 +80,15 @@ public class PesajeModel {
                 String pes_hora_ingreso = rs.getString("pes_hora_ingreso");
                 String pes_hora_salida = rs.getString("pes_hora_salida");
                 double pes_tara = rs.getDouble("pes_tara");
+                double pes_neto = rs.getDouble("pes_neto");
+                double pes_bruto = rs.getDouble("pes_bruto");
+                String pes_producto = rs.getString("pes_producto");
 
                 MovilidadEntiti movilidad = MovilidadModel.getMovilidadById(new MovilidadEntiti(pes_mov_id));
                 EmpleadoEntiti empleado = EmpleadoModel.getEmpleadoById(new EmpleadoEntiti(pes_emp_id));
                 ConductorEntiti conductor = ConductorModel.getConductorById(new ConductorEntiti(pes_con_id));
 
-                pesaje_buscado = new PesajeEntiti(movilidad, empleado, conductor, pes_fecha_ingreso, pes_fecha_salida, pes_peso_ingreso, pes_peso_salida, pes_hora_ingreso, pes_hora_salida, pes_tara);
+                pesaje_buscado = new PesajeEntiti(pes_id, movilidad, empleado, conductor, pes_fecha_ingreso, pes_fecha_salida, pes_peso_ingreso, pes_peso_salida, pes_hora_ingreso, pes_hora_salida, pes_tara, pes_neto, pes_bruto, pes_producto);
 
             }
 

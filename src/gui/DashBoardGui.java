@@ -18,16 +18,17 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import state.StateApp;
+import utils.LeerPuertoSerial;
 
 public class DashBoardGui extends javax.swing.JFrame {
-    
+
     DefaultComboBoxModel<String> modelo_conductor;
     EmpresaMovilidadEntiti empresa_movilidad;
     DefaultTableModel modelo_tabla;
     boolean peso_ingreso = true;
-    
+
     public static PesajeTicketEntiti pesajeTicket;
-    
+
     public DashBoardGui() {
         initComponents();
         this.setResizable(false);
@@ -36,47 +37,48 @@ public class DashBoardGui extends javax.swing.JFrame {
         this.cargarImagenes();
         this.generateNewTicket();
         this.getTicketsPendientes();
-        
+        this.setDataLabelPortSerial();
+
     }
-    
+
     public void OcultarOpcionesSession() {
-        
+
         switch (StateApp.ses_tipo) {
-            
+
             case EstadosApp.SESSION_ADMIN:
                 break;
-            
+
             case EstadosApp.SESSION_EMPLEADO:
                 this.quitarEventosAdmin();
                 break;
-            
+
             default:
                 this.quitarEventosTodos();
                 break;
-            
+
         }
-        
+
     }
-    
+
     public void quitarEventosAdmin() {
-        
+
         jbtn_balanza.setEnabled(false);
         jbtn_respaldo.setEnabled(false);
-        
+
         MouseListener[] mListener = jbtn_balanza.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_balanza.removeMouseListener(ml);
         }
-        
+
         mListener = jbtn_respaldo.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_respaldo.removeMouseListener(ml);
         }
-        
+
     }
-    
+
     public void quitarEventosTodos() {
-        
+
         jbtn_balanza.setEnabled(false);
         jbtn_tickets.setEnabled(false);
         jbtn_balanza.setEnabled(false);
@@ -85,46 +87,46 @@ public class DashBoardGui extends javax.swing.JFrame {
         jbtn_proceso_pesaje.setEnabled(false);
         jbtn_respaldo.setEnabled(false);
         jbtn_cambiar_usuario.setEnabled(false);
-        
+
         MouseListener[] mListener = jbtn_balanza.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_respaldo.removeMouseListener(ml);
         }
-        
+
         mListener = jbtn_tickets.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_tickets.removeMouseListener(ml);
         }
-        
+
         mListener = jbtn_mantenimiento.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_mantenimiento.removeMouseListener(ml);
         }
-        
+
         mListener = jbtn_reportes.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_reportes.removeMouseListener(ml);
         }
-        
+
         mListener = jbtn_proceso_pesaje.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_proceso_pesaje.removeMouseListener(ml);
         }
-        
+
         mListener = jbtn_respaldo.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_respaldo.removeMouseListener(ml);
         }
-        
+
         mListener = jbtn_cambiar_usuario.getMouseListeners();
         for (MouseListener ml : mListener) {
             jbtn_cambiar_usuario.removeMouseListener(ml);
         }
-        
+
     }
-    
+
     public void cargarImagenes() {
-        
+
         rsscalelabel.RSScaleLabel.setScaleLabel(jlbl_logo, Rutas.DIR_ASSETS_IMAGES + "login.png");
 
         //PROCESO DE PEAJE
@@ -135,65 +137,65 @@ public class DashBoardGui extends javax.swing.JFrame {
         rsscalelabel.RSScaleLabel.setScaleLabel(jlbl_proceso_peaje_copia, Rutas.DIR_ASSETS_IMAGES + "printer-64.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(jlbl_proceso_peaje_peso_rapido, Rutas.DIR_ASSETS_IMAGES + "camionproducto.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(jlbl_proceso_peaje_salir, Rutas.DIR_ASSETS_IMAGES + "closesoft.png");
-        
+
         rsscalelabel.RSScaleLabel.setScaleLabel(jlbl_proceso_peaje_resetear_ingreso, Rutas.DIR_ASSETS_IMAGES + "WZUNDO.jpg");
         rsscalelabel.RSScaleLabel.setScaleLabel(jlbl_proceso_peaje_resetear_salida, Rutas.DIR_ASSETS_IMAGES + "WZUNDO.jpg");
-        
+
         rsscalelabel.RSScaleLabel.setScaleLabel(jlbl_proceso_pesaje_actualizar_valanza, Rutas.DIR_ASSETS_IMAGES + "update.png");
-        
+
     }
-    
+
     public void generateNewTicket() {
-        
+
         int newSerie = PesajeTicketController.getGenerateNewTicketSerie();
-        
+
         jtxt_ticket_numero_serie.setText(String.valueOf(newSerie));
-        
+
     }
-    
+
     public void getEmpresaMovilidad(String placa) {
-        
+
         empresa_movilidad = EmpresaMovilidadController.getEmpresaMovilidadByPlaca(placa);
-        
+
         if (empresa_movilidad != null) {
             jtxt_empresa_nombre.setText(empresa_movilidad.getEprmovdet_epr_id().getEpr_nombre());
             jtxt_empresa_ruc.setText(empresa_movilidad.getEprmovdet_epr_id().getEpr_ruc());
-            
+
             jtxt_movilidad_destino.setText(empresa_movilidad.getEprmovdet_mov_id().getMv_destino());
             jtxt_movilidad_procedencia.setText(empresa_movilidad.getEprmovdet_mov_id().getMov_procedencia());
             jtxt_placa_movilidad.setText(empresa_movilidad.getEprmovdet_mov_id().getMov_placa());
-            
+
             getEmpresaConductor(empresa_movilidad.getEprmovdet_epr_id().getEpr_id());
         }
-        
+
     }
-    
+
     public void getEmpresaConductor(int empresa_id) {
-        
+
         ArrayList<EmpresaConductorEntiti> lista_conductor = EmpresaConductorController.getListaEmpresaMovilidadByEmpresaId(empresa_id);
-        
+
         if (false == lista_conductor.isEmpty()) {
-            
+
             modelo_conductor = (DefaultComboBoxModel<String>) jcb_conductor.getModel();
-            
+
             modelo_conductor.removeAllElements();
-            
+
             lista_conductor.forEach((ele) -> {
                 if (ele.getEprcondet_con_id() != null) {
-                    
+
                     modelo_conductor.addElement(ele.getEprcondet_con_id().getCon_id()
                             + " - " + ele.getEprcondet_con_id().getCon_dni()
                             + " - " + ele.getEprcondet_con_id().getCon_nombre().toUpperCase()
                             + " - " + ele.getEprcondet_con_id().getCon_apellido().toUpperCase());
-                    
+
                 }
             });
         }
-        
+
     }
-    
+
     public void clearForm() {
-        
+
         jtxt_fecha_ingreso.setText("");
         jtxt_peso_ingreso.setText("");
         jtxt_hora_ingreso.setText("");
@@ -202,32 +204,32 @@ public class DashBoardGui extends javax.swing.JFrame {
         jtxt_empresa_nombre.setText("");
         jtxt_empresa_ruc.setText("");
         jlbl_peso_balanza.setText("0KG");
-        
+
         jtxt_movilidad_destino.setText("");
         jtxt_movilidad_procedencia.setText("");
-        
+
         jtxt_tara_referencial.setText("");
-        
+
         jtxt_peso_salida.setText("");
         jtxt_fecha_salida.setText("");
         jtxt_hora_salida.setText("");
-        
+
         jtxt_peso_tara.setText("");
         jtxt_peso_bruto.setText("");
         jtxt_peso_neto.setText("");
-        
+
         if (modelo_conductor != null) {
-            
+
             modelo_conductor.removeAllElements();
         }
     }
-    
+
     public void registrarPesajeIngreso() {
         if (jcb_conductor.getItemCount() > 0) {
             int pes_mov_id = empresa_movilidad.getEprmovdet_mov_id().getMov_id();
             int pes_emp_id = empresa_movilidad.getEprmovdet_epr_id().getEpr_id();
             String id_conductor = jcb_conductor.getSelectedItem().toString();
-            
+
             int pes_con_id = Integer.parseInt(id_conductor.split(" - ")[0]);
             String pes_fecha_ingreso = jtxt_fecha_ingreso.getText();
             double pes_peso_ingreso = Double.parseDouble(jtxt_peso_ingreso.getText());
@@ -235,65 +237,93 @@ public class DashBoardGui extends javax.swing.JFrame {
             int serie_numero = Integer.parseInt(jtxt_ticket_numero_serie.getText());
             double pes_tara = Double.parseDouble(jtxt_tara_referencial.getText());
             String pes_producto = jtxt_producto.getText();
-            
+
             PesajeController.insertPesajeIngreso(pes_mov_id, pes_emp_id, pes_con_id, pes_fecha_ingreso, pes_peso_ingreso, pes_hora_ingreso, serie_numero, pes_tara, pes_producto);
-            
+
+            getLastPesajeIngreso();
+
             generateNewTicket();
-            
+
             getTicketsPendientes();
+
         } else {
             JOptionPane.showMessageDialog(null, "ESTA EMPRESA NO TIENE CONDUCTORES");
         }
-        
+
     }
-    
+
+    public void getLastPesajeIngreso() {
+        pesajeTicket = PesajeTicketController.getLastPesajeTicketIngreso();
+
+    }
+
+    public void getLastPesajeSalida() {
+
+        pesajeTicket = PesajeTicketController.getBuscarTicketByTicket(pesajeTicket.getTic_serie_numero());
+
+    }
+
     public void getTicketsPendientes() {
-        
+
         ArrayList<PesajeTicketEntiti> lista_pendientes = PesajeTicketController.getTodosTicketsPendientes();
-        
+
         modelo_tabla = (DefaultTableModel) jtbl_proceso_pesaje_pendientes.getModel();
-        
+
         modelo_tabla.setColumnCount(0);
         modelo_tabla.setRowCount(0);
-        
+
         modelo_tabla.addColumn("TICKET");
         modelo_tabla.addColumn("PLACA");
-        
+
         if (lista_pendientes.isEmpty() == false && lista_pendientes != null) {
-            
+
             lista_pendientes.forEach(ele -> {
-                
+
                 if (ele.getTic_pes_id() != null) {
-                    
+
                     modelo_tabla.addRow(new String[]{String.valueOf(ele.getTic_id()), ele.getTic_pes_id().getPes_mov_id().getMov_placa()});
                 }
             });
-            
+
         }
-        
+
     }
-    
+
     public void registrarPesajeSalida() {
-        
+
         if (jtxt_fecha_salida.getText().isEmpty() == false) {
-            
+
             String pes_fecha_salida = jtxt_fecha_salida.getText();
             String pes_hora_salida = jtxt_hora_salida.getText();
             double pes_peso_salida = Double.parseDouble(jtxt_peso_salida.getText());
             double pes_neto = Double.parseDouble(jtxt_peso_neto.getText());
             double pes_bruto = Double.parseDouble(jtxt_peso_bruto.getText());
-            
+
             PesajeController.updatePesajeSalida(pesajeTicket.getTic_pes_id().getPes_id(), pes_fecha_salida, pes_hora_salida, pes_peso_salida, pes_neto, pes_bruto);
             getTicketsPendientes();
+            getLastPesajeSalida();
             peso_ingreso = true;
         } else {
-            
+
             JOptionPane.showMessageDialog(null, "Capture el pesaje de Salida");
-            
+
         }
-        
+
     }
-    
+
+    public void setDataLabelPortSerial() {
+
+        if (LeerPuertoSerial.t == null) {
+
+            LeerPuertoSerial.setDataPortLabel(jlbl_peso_balanza);
+
+        }else{
+            
+            LeerPuertoSerial.labelSetData = jlbl_peso_balanza;
+        }
+
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -395,6 +425,11 @@ public class DashBoardGui extends javax.swing.JFrame {
         jtxt_peso_neto = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(9, 113, 195));
 
@@ -1553,7 +1588,7 @@ public class DashBoardGui extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtn_respaldoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_respaldoMouseClicked
-        
+
         BackupGui v = new BackupGui();
         v.setVisible(true);
         this.dispose();
@@ -1567,28 +1602,29 @@ public class DashBoardGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtn_cambiar_usuarioMouseClicked
 
     private void jtbl_proceso_pesaje_pendientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbl_proceso_pesaje_pendientesMouseClicked
-        
+        clearForm();
+
         int row = jtbl_proceso_pesaje_pendientes.getSelectedRow();
-        
+
         int idTicketPesaje = Integer.valueOf(jtbl_proceso_pesaje_pendientes.getValueAt(row, 0).toString());
-        
+
         pesajeTicket = PesajeTicketController.getPesajeIngresoById(idTicketPesaje);
-        
+
         if (pesajeTicket != null) {
-            
+
             peso_ingreso = false;
-            
+
             getEmpresaMovilidad(pesajeTicket.getTic_pes_id().getPes_mov_id().getMov_placa());
-            
+
             jtxt_fecha_ingreso.setText(pesajeTicket.getTic_pes_id().getPes_fecha_ingreso());
             jtxt_hora_ingreso.setText(pesajeTicket.getTic_pes_id().getPes_hora_ingreso());
             jtxt_peso_ingreso.setText(String.valueOf(pesajeTicket.getTic_pes_id().getPes_peso_ingreso()));
             jtxt_peso_tara.setText(String.valueOf(pesajeTicket.getTic_pes_id().getPes_tara()));
             jtxt_tara_referencial.setText(String.valueOf(pesajeTicket.getTic_pes_id().getPes_tara()));
             jtxt_producto.setText(pesajeTicket.getTic_pes_id().getPes_producto());
-            
+
         }
-        
+
 
     }//GEN-LAST:event_jtbl_proceso_pesaje_pendientesMouseClicked
 
@@ -1611,17 +1647,19 @@ public class DashBoardGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtn_reportesMouseClicked
 
     private void jlbl_proceso_peaje_imprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbl_proceso_peaje_imprimirMouseClicked
-        
+
         if (pesajeTicket != null) {
-            
-            if (jtxt_fecha_salida.getText().isEmpty()) {
-                TicketIngresoGui ingreso_v = new TicketIngresoGui();
-                ingreso_v.setVisible(true);
-            } else {
-                
+
+            if (pesajeTicket.getTic_pes_id().getPes_peso_salida() > 0) {
+
                 TicketSalidaGui salida_v = new TicketSalidaGui();
                 salida_v.setVisible(true);
+
+            } else {
+                TicketIngresoGui ingreso_v = new TicketIngresoGui();
+                ingreso_v.setVisible(true);
             }
+
         }
 
     }//GEN-LAST:event_jlbl_proceso_peaje_imprimirMouseClicked
@@ -1633,7 +1671,7 @@ public class DashBoardGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtn_mantenimientoMouseClicked
 
     private void jlbl_proceso_peaje_nuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbl_proceso_peaje_nuevoMouseClicked
-        
+
         peso_ingreso = true;
         clearForm();
         generateNewTicket();
@@ -1644,16 +1682,16 @@ public class DashBoardGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jtxt_tara_referencialActionPerformed
 
     private void jtxt_placa_movilidadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxt_placa_movilidadKeyReleased
-        
+
         String placa = jtxt_placa_movilidad.getText();
-        
+
         if (placa.length() > 3) {
             getEmpresaMovilidad(placa);
         }
     }//GEN-LAST:event_jtxt_placa_movilidadKeyReleased
 
     private void jlbl_proceso_peaje_capturarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbl_proceso_peaje_capturarMouseClicked
-        
+
         if (peso_ingreso) {
             jtxt_fecha_ingreso.setText(LocalDate.now().toString());
             jtxt_hora_ingreso.setText(LocalTime.now().toString());
@@ -1663,23 +1701,23 @@ public class DashBoardGui extends javax.swing.JFrame {
             jtxt_fecha_salida.setText(LocalDate.now().toString());
             jtxt_hora_salida.setText(LocalTime.now().toString());
             jtxt_peso_salida.setText(jlbl_peso_balanza.getText().split("KG")[0]);
-            
+
             double peso_tara = pesajeTicket.getTic_pes_id().getPes_tara();
             double peso_bruto = Double.parseDouble(jlbl_peso_balanza.getText().split("KG")[0]);
-            
+
             jtxt_peso_bruto.setText(String.valueOf(peso_bruto));
-            
+
             double peso_neto = peso_bruto - peso_tara;
-            
+
             jtxt_peso_neto.setText(String.valueOf(peso_neto));
-            
+
         }
-        
+
 
     }//GEN-LAST:event_jlbl_proceso_peaje_capturarMouseClicked
 
     private void jlbl_proceso_peaje_guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbl_proceso_peaje_guardarMouseClicked
-        
+
         if (peso_ingreso) {
             registrarPesajeIngreso();
         } else {
@@ -1698,15 +1736,17 @@ public class DashBoardGui extends javax.swing.JFrame {
 
     private void jlbl_proceso_peaje_copiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbl_proceso_peaje_copiaMouseClicked
         if (pesajeTicket != null) {
-            
-            if (jtxt_fecha_salida.getText().isEmpty()) {
-                TicketIngresoGui ingreso_v = new TicketIngresoGui();
-                ingreso_v.setVisible(true);
-            } else {
-                
+
+            if (pesajeTicket.getTic_pes_id().getPes_peso_salida() > 0) {
+
                 TicketSalidaGui salida_v = new TicketSalidaGui();
                 salida_v.setVisible(true);
+
+            } else {
+                TicketIngresoGui ingreso_v = new TicketIngresoGui();
+                ingreso_v.setVisible(true);
             }
+
         }
     }//GEN-LAST:event_jlbl_proceso_peaje_copiaMouseClicked
 
@@ -1734,17 +1774,21 @@ public class DashBoardGui extends javax.swing.JFrame {
         BuscarTicketGui v = new BuscarTicketGui();
         v.setVisible(true);
     }//GEN-LAST:event_jlbl_buscar_ticketMouseClicked
-    
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+
+    }//GEN-LAST:event_formWindowClosing
+
     public static void main(String args[]) {
         try {
-            
+
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-            
+
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(DashBoardGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }

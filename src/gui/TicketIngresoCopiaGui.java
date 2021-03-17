@@ -54,6 +54,8 @@ public class TicketIngresoCopiaGui extends javax.swing.JFrame implements Printab
             jlbl_fecha_ingreso.setText(ticket_pesaje.getTic_pes_id().getPes_hora_ingreso());
             jlbl_hora_ingreso.setText(ticket_pesaje.getTic_pes_id().getPes_hora_ingreso());
             jlbl_peso_ingreso.setText(String.valueOf(ticket_pesaje.getTic_pes_id().getPes_peso_ingreso()));
+            
+            jlbl_pesaje_empleado.setText(ticket_pesaje.getTic_pes_id().getPes_emp_id().getEmp_nombre());
 
         }
 
@@ -133,6 +135,8 @@ public class TicketIngresoCopiaGui extends javax.swing.JFrame implements Printab
         jlbl_hora_ingreso = new javax.swing.JLabel();
         jlbl_peso_ingreso = new javax.swing.JLabel();
         jlbl_pie_pagina_ticket = new javax.swing.JLabel();
+        jLabel77 = new javax.swing.JLabel();
+        jlbl_pesaje_empleado = new javax.swing.JLabel();
         jbtn_imprimir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -272,6 +276,12 @@ public class TicketIngresoCopiaGui extends javax.swing.JFrame implements Printab
         jlbl_pie_pagina_ticket.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbl_pie_pagina_ticket.setText("GRACIAS POR SU VISITA");
 
+        jLabel77.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel77.setText("EMPLEADO");
+
+        jlbl_pesaje_empleado.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jlbl_pesaje_empleado.setText("EMPLEADO");
+
         javax.swing.GroupLayout jpnl_imprimirLayout = new javax.swing.GroupLayout(jpnl_imprimir);
         jpnl_imprimir.setLayout(jpnl_imprimirLayout);
         jpnl_imprimirLayout.setHorizontalGroup(
@@ -286,17 +296,16 @@ public class TicketIngresoCopiaGui extends javax.swing.JFrame implements Printab
                         .addComponent(jlbl_titulo_ticket2, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jpnl_imprimirLayout.createSequentialGroup()
-                        .addGroup(jpnl_imprimirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jpnl_imprimirLayout.createSequentialGroup()
-                                .addComponent(jLabel76)
-                                .addGap(67, 67, 67)
-                                .addComponent(jlbl_producto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jpnl_imprimirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlbl_subtitulo_ticket2, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlbl_pie_pagina_ticket, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jpnl_imprimirLayout.createSequentialGroup()
                                 .addGroup(jpnl_imprimirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel64)
                                     .addComponent(jLabel66)
                                     .addComponent(jLabel68)
-                                    .addComponent(jLabel70))
+                                    .addComponent(jLabel70)
+                                    .addComponent(jLabel77))
                                 .addGap(48, 48, 48)
                                 .addGroup(jpnl_imprimirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jpnl_imprimirLayout.createSequentialGroup()
@@ -308,22 +317,24 @@ public class TicketIngresoCopiaGui extends javax.swing.JFrame implements Printab
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel78))
                                     .addGroup(jpnl_imprimirLayout.createSequentialGroup()
-                                        .addComponent(jlbl_dni, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jpnl_imprimirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jlbl_dni, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jlbl_pesaje_empleado))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jpnl_imprimirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel72)
-                                            .addComponent(jLabel82)))
+                                            .addComponent(jLabel82)
+                                            .addComponent(jLabel76)))
                                     .addComponent(jlbl_procedencia, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(48, 48, 48)
+                                .addGap(38, 38, 38)
                                 .addGroup(jpnl_imprimirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jlbl_empresa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jlbl_nombre_chofer, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
                                     .addComponent(jlbl_destino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jpnl_imprimirLayout.createSequentialGroup()
                                         .addComponent(jlbl_placa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(6, 6, 6))))
-                            .addComponent(jlbl_subtitulo_ticket2, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlbl_pie_pagina_ticket, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(6, 6, 6))
+                                    .addComponent(jlbl_producto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jpnl_imprimirLayout.setVerticalGroup(
@@ -358,9 +369,11 @@ public class TicketIngresoCopiaGui extends javax.swing.JFrame implements Printab
                     .addComponent(jLabel72)
                     .addComponent(jlbl_destino))
                 .addGap(18, 18, 18)
-                .addGroup(jpnl_imprimirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpnl_imprimirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlbl_producto)
                     .addComponent(jLabel76)
-                    .addComponent(jlbl_producto))
+                    .addComponent(jLabel77)
+                    .addComponent(jlbl_pesaje_empleado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -446,6 +459,7 @@ public class TicketIngresoCopiaGui extends javax.swing.JFrame implements Printab
     private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel76;
+    private javax.swing.JLabel jLabel77;
     private javax.swing.JLabel jLabel78;
     private javax.swing.JLabel jLabel80;
     private javax.swing.JLabel jLabel82;
@@ -463,6 +477,7 @@ public class TicketIngresoCopiaGui extends javax.swing.JFrame implements Printab
     private javax.swing.JLabel jlbl_hora_ingreso;
     private javax.swing.JLabel jlbl_nombre_chofer;
     private javax.swing.JLabel jlbl_numero_ticket;
+    private javax.swing.JLabel jlbl_pesaje_empleado;
     private javax.swing.JLabel jlbl_peso_ingreso;
     private javax.swing.JLabel jlbl_pie_pagina_ticket;
     private javax.swing.JLabel jlbl_placa;

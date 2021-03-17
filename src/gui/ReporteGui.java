@@ -542,13 +542,13 @@ public class ReporteGui extends javax.swing.JFrame {
 
     private void jlbl_generar_reporteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbl_generar_reporteMouseClicked
 
-       /* String fechaDesde = sdf.format(jdt_fecha_desde.getDate());
+        String fechaDesde = sdf.format(jdt_fecha_desde.getDate());
         String fechaHasta = sdf.format(jdt_fecha_hasta.getDate());
 
-        System.out.println(fechaDesde + fechaHasta);*/
+        System.out.println(fechaDesde + fechaHasta);
 
         try {
-            ExportExcel.generateExcel(DataBase.TBL_PESAJE);
+            ExportExcel.generateExcel("CONDUCTOR", "12345678");
         } catch (Exception ex) {
             Logger.getLogger(ReporteGui.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package utils;
 
 import config.MensajeError;
@@ -17,25 +12,27 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Enumeration;
-import java.util.List;
 import java.util.TooManyListenersException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author user
- */
 public class LeerPuertoSerial implements Runnable, SerialPortEventListener {
 
-    public SerialPort serialPort;
-    public String st;
+    private SerialPort serialPort;
+    private String st;
     private InputStream input;
     private OutputStream output;
     public char[] c;
     private final int TIME_OUT = 1000;
     private final int DATA_RATE = 9600;
+    public static JLabel labelSetData;
+    public static Thread t;
+
+    public LeerPuertoSerial(JLabel labelSetData) {
+        LeerPuertoSerial.labelSetData = labelSetData;
+    }
 
     public void getPorts() {
 
@@ -70,18 +67,16 @@ public class LeerPuertoSerial implements Runnable, SerialPortEventListener {
             } else {
                 JOptionPane.showMessageDialog(null, "ERROR EN LEER EL PURTO");
             }
-        } catch (HeadlessException e) {
+        } catch (HeadlessException | PortInUseException | TooManyListenersException | IOException | UnsupportedCommOperationException e) {
 
             JOptionPane.showMessageDialog(null, MensajeError.ERROR_LLAME_AL_PROGRAMADOR);
-        } catch (PortInUseException | TooManyListenersException | IOException | UnsupportedCommOperationException ex) {
-            Logger.getLogger(LeerPuertoSerial.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
-    public static void main(String[] args) {
-        LeerPuertoSerial p = new LeerPuertoSerial();
-        Thread t = new Thread(() -> {
+    public static void setDataPortLabel(JLabel label) {
+        LeerPuertoSerial p = new LeerPuertoSerial(label);
+        t = new Thread(() -> {
             p.run();
         });
 
@@ -103,8 +98,10 @@ public class LeerPuertoSerial implements Runnable, SerialPortEventListener {
                 input.read(chunk, 0, available);
                 st = new String(chunk);
                 System.out.print(st);
+
+                labelSetData.setText(st + "KG");
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(500);
                 } catch (InterruptedException ex) {
                     Thread.currentThread().interrupt();
                 }

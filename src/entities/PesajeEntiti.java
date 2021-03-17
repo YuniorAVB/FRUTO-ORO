@@ -94,6 +94,24 @@ public class PesajeEntiti {
         this.pes_bruto = pes_bruto;
     }
 
+    public PesajeEntiti(int pes_id, MovilidadEntiti pes_mov_id, EmpleadoEntiti pes_emp_id, ConductorEntiti pes_con_id, String pes_fecha_ingreso, String pes_fecha_salida, double pes_peso_ingreso, double pes_peso_salida, String pes_hora_ingreso, String pes_hora_salida, double pes_tara, double pes_neto, double pes_bruto, String pes_producto) {
+        this.pes_id = pes_id;
+        this.pes_mov_id = pes_mov_id;
+        this.pes_emp_id = pes_emp_id;
+        this.pes_con_id = pes_con_id;
+        this.pes_fecha_ingreso = pes_fecha_ingreso;
+        this.pes_fecha_salida = pes_fecha_salida;
+        this.pes_peso_ingreso = pes_peso_ingreso;
+        this.pes_peso_salida = pes_peso_salida;
+        this.pes_hora_ingreso = pes_hora_ingreso;
+        this.pes_hora_salida = pes_hora_salida;
+        this.pes_tara = pes_tara;
+        this.pes_neto = pes_neto;
+        this.pes_bruto = pes_bruto;
+        this.pes_producto = pes_producto;
+    }
+
+    
     public double getPes_neto() {
         return pes_neto;
     }

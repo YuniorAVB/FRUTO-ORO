@@ -62,6 +62,8 @@ public class TicketCopiaFullGui extends javax.swing.JFrame implements Printable 
             jlbl_peso_bruto.setText(String.valueOf(ticket_pesaje.getTic_pes_id().getPes_bruto()));
             jlbl_tara.setText(String.valueOf(ticket_pesaje.getTic_pes_id().getPes_tara()));
             jlbl_peso_neto.setText(String.valueOf(ticket_pesaje.getTic_pes_id().getPes_neto()));
+            
+            jlbl_pesaje_empleado.setText(ticket_pesaje.getTic_pes_id().getPes_emp_id().getEmp_nombre());
 
         }
 
@@ -158,6 +160,8 @@ public class TicketCopiaFullGui extends javax.swing.JFrame implements Printable 
         jlbl_peso_neto = new javax.swing.JLabel();
         jlbl_tara = new javax.swing.JLabel();
         jlbl_peso_bruto = new javax.swing.JLabel();
+        jLabel77 = new javax.swing.JLabel();
+        jlbl_pesaje_empleado = new javax.swing.JLabel();
         jbtn_imprimir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -425,6 +429,12 @@ public class TicketCopiaFullGui extends javax.swing.JFrame implements Printable 
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel77.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel77.setText("PRODUCTO");
+
+        jlbl_pesaje_empleado.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jlbl_pesaje_empleado.setText("PRODUCTO");
+
         javax.swing.GroupLayout jpnl_imprimirLayout = new javax.swing.GroupLayout(jpnl_imprimir);
         jpnl_imprimir.setLayout(jpnl_imprimirLayout);
         jpnl_imprimirLayout.setHorizontalGroup(
@@ -443,16 +453,15 @@ public class TicketCopiaFullGui extends javax.swing.JFrame implements Printable 
                                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                            .addGroup(jpnl_imprimirLayout.createSequentialGroup()
-                                .addComponent(jLabel76)
-                                .addGap(67, 67, 67)
-                                .addComponent(jlbl_producto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jlbl_subtitulo_ticket2, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlbl_pie_pagina_ticket, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jpnl_imprimirLayout.createSequentialGroup()
                                 .addGroup(jpnl_imprimirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel64)
                                     .addComponent(jLabel66)
                                     .addComponent(jLabel68)
-                                    .addComponent(jLabel70))
+                                    .addComponent(jLabel70)
+                                    .addComponent(jLabel77))
                                 .addGap(48, 48, 48)
                                 .addGroup(jpnl_imprimirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jpnl_imprimirLayout.createSequentialGroup()
@@ -464,22 +473,25 @@ public class TicketCopiaFullGui extends javax.swing.JFrame implements Printable 
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel78))
                                     .addGroup(jpnl_imprimirLayout.createSequentialGroup()
-                                        .addComponent(jlbl_dni, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jpnl_imprimirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jlbl_dni, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jlbl_pesaje_empleado))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jpnl_imprimirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel72)
-                                            .addComponent(jLabel82)))
+                                            .addComponent(jLabel82)
+                                            .addComponent(jLabel76)))
                                     .addComponent(jlbl_procedencia, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(48, 48, 48)
-                                .addGroup(jpnl_imprimirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jlbl_empresa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jlbl_nombre_chofer, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                                    .addComponent(jlbl_destino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jpnl_imprimirLayout.createSequentialGroup()
-                                        .addComponent(jlbl_placa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(6, 6, 6))))
-                            .addComponent(jlbl_subtitulo_ticket2, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlbl_pie_pagina_ticket, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(38, 38, 38)
+                                .addGroup(jpnl_imprimirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jlbl_producto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jpnl_imprimirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jlbl_empresa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jlbl_nombre_chofer, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                                        .addComponent(jlbl_destino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jpnl_imprimirLayout.createSequentialGroup()
+                                            .addComponent(jlbl_placa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGap(6, 6, 6))))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jpnl_imprimirLayout.setVerticalGroup(
@@ -514,9 +526,11 @@ public class TicketCopiaFullGui extends javax.swing.JFrame implements Printable 
                     .addComponent(jLabel72)
                     .addComponent(jlbl_destino))
                 .addGap(18, 18, 18)
-                .addGroup(jpnl_imprimirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpnl_imprimirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlbl_producto)
                     .addComponent(jLabel76)
-                    .addComponent(jlbl_producto))
+                    .addComponent(jLabel77)
+                    .addComponent(jlbl_pesaje_empleado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpnl_imprimirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -609,6 +623,7 @@ public class TicketCopiaFullGui extends javax.swing.JFrame implements Printable 
     private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel76;
+    private javax.swing.JLabel jLabel77;
     private javax.swing.JLabel jLabel78;
     private javax.swing.JLabel jLabel80;
     private javax.swing.JLabel jLabel82;
@@ -634,6 +649,7 @@ public class TicketCopiaFullGui extends javax.swing.JFrame implements Printable 
     private javax.swing.JLabel jlbl_hora_salida;
     private javax.swing.JLabel jlbl_nombre_chofer;
     private javax.swing.JLabel jlbl_numero_ticket;
+    private javax.swing.JLabel jlbl_pesaje_empleado;
     private javax.swing.JLabel jlbl_peso_bruto;
     private javax.swing.JLabel jlbl_peso_ingreso;
     private javax.swing.JLabel jlbl_peso_neto;

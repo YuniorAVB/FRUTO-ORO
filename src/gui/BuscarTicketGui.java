@@ -5,39 +5,46 @@ import entities.PesajeTicketEntiti;
 import javax.swing.JOptionPane;
 
 public class BuscarTicketGui extends javax.swing.JFrame {
-
+    
     public static PesajeTicketEntiti pesaje;
-
+    
     public BuscarTicketGui() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-
+    
     public void buscarTicket(String tipo) {
-
+        
         String ticket = jtxt_buscar_ticket.getText();
-        pesaje = PesajeTicketController.getBuscarTicketByTicket(Integer.parseInt(ticket));
-        if (pesaje != null) {
-            switch (tipo) {
-
-                case "ingreso":
-                    TicketIngresoCopiaGui v_ingreso = new TicketIngresoCopiaGui();
-                    v_ingreso.setVisible(true);
-                    break;
-                case "salida":
-                    TicketCopiaSalidaGui v_salida = new TicketCopiaSalidaGui();
-                    v_salida.setVisible(true);
-                    break;
-                case "copia":
-                    TicketCopiaFullGui v_copia = new TicketCopiaFullGui();
-                    v_copia.setVisible(true);
-                    break;
+        if (ticket.trim().isEmpty() == false) {
+            
+            pesaje = PesajeTicketController.getBuscarTicketByTicket(Integer.parseInt(ticket));
+            if (pesaje != null) {
+                switch (tipo) {
+                    
+                    case "ingreso":
+                        TicketIngresoCopiaGui v_ingreso = new TicketIngresoCopiaGui();
+                        v_ingreso.setVisible(true);
+                        break;
+                    case "salida":
+                        TicketCopiaSalidaGui v_salida = new TicketCopiaSalidaGui();
+                        v_salida.setVisible(true);
+                        break;
+                    case "copia":
+                        TicketCopiaFullGui v_copia = new TicketCopiaFullGui();
+                        v_copia.setVisible(true);
+                        break;
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "El Ticket no Existe o falta Pesar la Salida");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "El Ticket no Existe o falta Pesar la Salida");
+            
+        }else{
+            
+            JOptionPane.showMessageDialog(null, "Ingrese el numero de Serie de ticket");
         }
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -159,7 +166,7 @@ public class BuscarTicketGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jtxt_buscar_ticketKeyTyped
 
     private void jtxt_buscar_ticketKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxt_buscar_ticketKeyReleased
-
+        
 
     }//GEN-LAST:event_jtxt_buscar_ticketKeyReleased
 

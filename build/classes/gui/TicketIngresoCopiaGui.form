@@ -93,18 +93,16 @@
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel76" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                                      <Component id="jlbl_producto" max="32767" attributes="0"/>
-                                  </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jlbl_subtitulo_ticket2" alignment="0" min="-2" pref="571" max="-2" attributes="0"/>
+                                  <Component id="jlbl_pie_pagina_ticket" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel64" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel66" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel68" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel70" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel77" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -119,16 +117,20 @@
                                               <Component id="jLabel78" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jlbl_dni" min="-2" pref="117" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jlbl_dni" min="-2" pref="117" max="-2" attributes="0"/>
+                                                  <Component id="jlbl_pesaje_empleado" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="jLabel72" min="-2" max="-2" attributes="0"/>
                                                   <Component id="jLabel82" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel76" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Component id="jlbl_procedencia" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="jlbl_empresa" alignment="0" max="32767" attributes="0"/>
                                           <Component id="jlbl_nombre_chofer" pref="214" max="32767" attributes="0"/>
@@ -137,10 +139,9 @@
                                               <Component id="jlbl_placa" max="32767" attributes="0"/>
                                               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                                           </Group>
+                                          <Component id="jlbl_producto" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Component id="jlbl_subtitulo_ticket2" alignment="0" min="-2" pref="571" max="-2" attributes="0"/>
-                                  <Component id="jlbl_pie_pagina_ticket" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -184,9 +185,11 @@
                           <Component id="jlbl_destino" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel76" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jlbl_producto" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jlbl_producto" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel76" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel77" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlbl_pesaje_empleado" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
@@ -484,6 +487,22 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="GRACIAS POR SU VISITA"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel77">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="10" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="EMPLEADO"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jlbl_pesaje_empleado">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="10" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="EMPLEADO"/>
               </Properties>
             </Component>
           </SubComponents>
