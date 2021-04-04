@@ -40,14 +40,12 @@ public class LoginGui extends javax.swing.JFrame {
 
         jtxt_usuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jtxt_usuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtxt_usuario.setText("admin");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Contraseña");
 
         jtxt_contrasenia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jtxt_contrasenia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtxt_contrasenia.setText("qwerty");
         jtxt_contrasenia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtxt_contraseniaActionPerformed(evt);

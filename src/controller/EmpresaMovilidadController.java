@@ -28,8 +28,10 @@ public class EmpresaMovilidadController {
 
             for (int j = 0; j < lista_movilidad_empresa.size(); j++) {
 
-                if (movilidad.getMov_id() == lista_movilidad_empresa.get(j).getEprmovdet_mov_id().getMov_id()) {
-                    iterador.remove();
+                if (movilidad != null && lista_movilidad_empresa.get(j).getEprmovdet_mov_id() != null) {
+                    if (movilidad.getMov_id() == lista_movilidad_empresa.get(j).getEprmovdet_mov_id().getMov_id()) {
+                        iterador.remove();
+                    }
                 }
 
             }

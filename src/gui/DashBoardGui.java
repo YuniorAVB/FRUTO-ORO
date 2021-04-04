@@ -18,6 +18,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import state.StateApp;
+import utils.LecturaSerial;
+import utils.LecturaSerial.LeerSerial;
 import utils.LeerPuertoSerial;
 
 public class DashBoardGui extends javax.swing.JFrame {
@@ -313,13 +315,14 @@ public class DashBoardGui extends javax.swing.JFrame {
 
     public void setDataLabelPortSerial() {
 
-        if (LeerPuertoSerial.t == null) {
+        if (LecturaSerial.t == null) {
 
-            LeerPuertoSerial.setDataPortLabel(jlbl_peso_balanza);
+            LecturaSerial.leerPueto(jlbl_peso_balanza);
 
         } else {
 
-            LeerPuertoSerial.labelSetData = jlbl_peso_balanza;
+            LeerSerial.labelClasePeso = jlbl_peso_balanza;
+
         }
 
     }

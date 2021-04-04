@@ -46,8 +46,9 @@ public class LeerPuertoSerial implements Runnable, SerialPortEventListener {
             while (puerto.hasMoreElements()) {
                 portId = (CommPortIdentifier) puerto.nextElement();
 
-                if (portId.getName().equals("COM9")) {
+                if (portId.getName().equals("COM2")) {
                     estado = true;
+                    System.out.println(portId.getCurrentOwner()+ "asd");
                 }
             }
 
@@ -90,14 +91,17 @@ public class LeerPuertoSerial implements Runnable, SerialPortEventListener {
 
     @Override
     public void serialEvent(SerialPortEvent spe) {
-
+        
+        System.out.println(spe.getSource());
+        
         if (spe.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
             try {
                 int available = input.available();
                 byte[] chunk = new byte[available];
                 input.read(chunk, 0, available);
                 st = new String(chunk);
-                System.out.print(st);
+                System.out.print(input.read());
+                System.out.println(input.available());
 
                 labelSetData.setText(st + "KG");
                 try {
