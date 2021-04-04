@@ -31,7 +31,7 @@ public class LecturaSerial {
             portId = (CommPortIdentifier) puertos.nextElement();
 
            
-            if (portId.getName().equalsIgnoreCase("COM2")) {
+            if (portId.getName().equalsIgnoreCase("COM1")) {
                 try {
                     serialport = (SerialPort) portId.open("LecturaSerial", 1000);
                     entrada = serialport.getInputStream();

@@ -1,2 +1,0 @@
-utils.Ventana
-utils.Main

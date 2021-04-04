@@ -2,8 +2,8 @@
 -- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 06-03-2021 a las 05:58:18
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 04-04-2021 a las 22:35:12
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.2
 
@@ -39,9 +39,7 @@ CREATE TABLE `app_conductor` (
 --
 
 INSERT INTO `app_conductor` (`con_id`, `con_nombre`, `con_dni`, `con_apellido`) VALUES
-(9, 'YUNIOR', '12345678', 'VERGARA '),
-(10, 'YUNIOR2', '23456783', 'VERGARA2'),
-(11, 'PEDRO1', '98765123', 'PEADASD');
+(9, 'CONDUCTOR DE PRUEBA', '12345678', 'NO BORRAR');
 
 -- --------------------------------------------------------
 
@@ -63,8 +61,7 @@ CREATE TABLE `app_empleado` (
 --
 
 INSERT INTO `app_empleado` (`emp_id`, `emp_dni`, `emp_nombre`, `emp_apellido`, `emp_edad`, `emp_sexo`) VALUES
-(1, '12345678', 'admin', 'admin', 21, 'M'),
-(14, '123456', 'yunior', 'vergara', 11, 'M');
+(1, '12345678', 'admin', 'admin', 0, 'M');
 
 -- --------------------------------------------------------
 
@@ -83,8 +80,7 @@ CREATE TABLE `app_empresa` (
 --
 
 INSERT INTO `app_empresa` (`epr_id`, `epr_ruc`, `epr_nombre`) VALUES
-(1, 'Leche Gloria', 'Leche Gloria'),
-(3, '123ASDASD', 'PUMANI');
+(1, 'EMPRESA', 'EMPRESA');
 
 -- --------------------------------------------------------
 
@@ -98,17 +94,6 @@ CREATE TABLE `app_empresa_conductor_detalle` (
   `eprcondet_epr_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `app_empresa_conductor_detalle`
---
-
-INSERT INTO `app_empresa_conductor_detalle` (`eprcondet_id`, `eprcondet_con_id`, `eprcondet_epr_id`) VALUES
-(15, 8, 1),
-(16, 1, 1),
-(17, 9, 1),
-(18, 10, 1),
-(19, 11, 3);
-
 -- --------------------------------------------------------
 
 --
@@ -120,16 +105,6 @@ CREATE TABLE `app_empresa_movilidad_detalle` (
   `eprmovdet_epr_id` int(11) NOT NULL,
   `eprmovdet_mov_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `app_empresa_movilidad_detalle`
---
-
-INSERT INTO `app_empresa_movilidad_detalle` (`eprmovdet_id`, `eprmovdet_epr_id`, `eprmovdet_mov_id`) VALUES
-(11, 1, 2),
-(12, 1, 5),
-(13, 3, 3),
-(14, 3, 4);
 
 -- --------------------------------------------------------
 
@@ -169,10 +144,7 @@ CREATE TABLE `app_movilidad` (
 --
 
 INSERT INTO `app_movilidad` (`mov_id`, `mov_destino`, `mov_procedencia`, `mov_placa`) VALUES
-(2, 'PISCO', 'CHINCHA ALTA', 'abc-abc'),
-(3, 'PISCO', 'NAZCA', 'hyb342'),
-(4, 'asdasd', 'asdasd', 'asdasdas'),
-(5, 'PISCO', 'CHINCHA', 'nbgcbva');
+(2, 'PRUEBA', 'MOVILIDAD DE', 'ABC-ABC');
 
 -- --------------------------------------------------------
 
@@ -197,13 +169,6 @@ CREATE TABLE `app_pesaje` (
   `pes_producto` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `app_pesaje`
---
-
-INSERT INTO `app_pesaje` (`pes_id`, `pes_mov_id`, `pes_emp_id`, `pes_con_id`, `pes_fecha_ingreso`, `pes_fecha_salida`, `pes_peso_ingreso`, `pes_peso_salida`, `pes_hora_ingreso`, `pes_hora_salida`, `pes_tara`, `pes_neto`, `pes_bruto`, `pes_producto`) VALUES
-(30, 2, 1, 10, '2021-03-05', NULL, '10000.560', NULL, '23:37:06.974', NULL, '10000.560', NULL, NULL, 'LECHE DE VACA');
-
 -- --------------------------------------------------------
 
 --
@@ -215,13 +180,6 @@ CREATE TABLE `app_pesaje_ticket` (
   `tic_pes_id` int(11) NOT NULL,
   `tic_serie_numero` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `app_pesaje_ticket`
---
-
-INSERT INTO `app_pesaje_ticket` (`tic_id`, `tic_pes_id`, `tic_serie_numero`) VALUES
-(25, 30, 0);
 
 -- --------------------------------------------------------
 
@@ -242,8 +200,7 @@ CREATE TABLE `app_session` (
 --
 
 INSERT INTO `app_session` (`ses_id`, `ses_usuario`, `ses_contrasenia`, `ses_tipo`, `ses_emp_id`) VALUES
-(1, 'admin', 'qwerty', 0, 1),
-(5, 'yunior', 'qwerty', 1, 14);
+(1, 'admin', 'qwerty', 0, 1);
 
 --
 -- Índices para tablas volcadas
@@ -359,13 +316,13 @@ ALTER TABLE `app_movilidad`
 -- AUTO_INCREMENT de la tabla `app_pesaje`
 --
 ALTER TABLE `app_pesaje`
-  MODIFY `pes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `pes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT de la tabla `app_pesaje_ticket`
 --
 ALTER TABLE `app_pesaje_ticket`
-  MODIFY `tic_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `tic_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT de la tabla `app_session`
