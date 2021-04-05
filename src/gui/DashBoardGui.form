@@ -675,7 +675,7 @@
                           <Color blue="0" green="cc" red="33" type="rgb"/>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="4"/>
-                        <Property name="text" type="java.lang.String" value="10000.56KG"/>
+                        <Property name="text" type="java.lang.String" value="0KG"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jlbl_proceso_pesaje_actualizar_valanza">

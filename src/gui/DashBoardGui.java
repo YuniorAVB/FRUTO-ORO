@@ -1,6 +1,6 @@
 package gui;
 
-import com.placeholder.PlaceHolder;
+
 import config.Rutas;
 import config.EstadosApp;
 import controller.EmpresaConductorController;
@@ -732,7 +732,7 @@ public class DashBoardGui extends javax.swing.JFrame {
         jlbl_peso_balanza.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jlbl_peso_balanza.setForeground(new java.awt.Color(51, 204, 0));
         jlbl_peso_balanza.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jlbl_peso_balanza.setText("10000.56KG");
+        jlbl_peso_balanza.setText("0KG");
 
         jlbl_proceso_pesaje_actualizar_valanza.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 

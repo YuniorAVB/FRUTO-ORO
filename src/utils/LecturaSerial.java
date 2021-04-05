@@ -20,8 +20,8 @@ public class LecturaSerial {
     static Enumeration puertos;
     static SerialPort serialport;
     static InputStream entrada = null;
-   public static Thread t;
-   public static JLabel label;
+    public static Thread t;
+    public static JLabel label;
 
     public static void leerPueto(JLabel label) {
 
@@ -30,7 +30,6 @@ public class LecturaSerial {
         while (puertos.hasMoreElements()) {
             portId = (CommPortIdentifier) puertos.nextElement();
 
-           
             if (portId.getName().equalsIgnoreCase("COM1")) {
                 try {
                     serialport = (SerialPort) portId.open("LecturaSerial", 1000);
@@ -47,7 +46,7 @@ public class LecturaSerial {
 
     public static class LeerSerial implements Runnable {
 
-      public  static JLabel labelClasePeso;
+        public static JLabel labelClasePeso;
 
         public LeerSerial(JLabel labelPeso) {
 
@@ -66,14 +65,32 @@ public class LecturaSerial {
 
                     String[] pesos = st.split("B");
 
-                    if (pesos.length >= 0) {
+                    if (pesos.length > 2) {
 
-                        if (st.length() > 0) {
-                            String nuevaCadena = pesos[0];
-                            String cadena = nuevaCadena.substring(0, nuevaCadena.length() - 2);
-                            labelClasePeso.setText(cadena+"KG");
+                        String pesoParseado = "0KG";
+                        if (pesos[1].length() - 1 >= 10) {
+
+                            pesoParseado = pesos[1].substring(3, pesos[1].length() - 2);
+
+                            labelClasePeso.setText(String.valueOf(Math.abs(Integer.parseInt(pesoParseado))) + "KG");
+
+                        } else if (pesos[2].length() - 1 >= 10) {
+                            pesoParseado = pesos[2].substring(3, pesos[2].length() - 2);
+
+                            labelClasePeso.setText(String.valueOf(Math.abs(Integer.parseInt(pesoParseado))) + "KG");
+
+                        } else if (pesos[3].length() - 1 >= 10) {
+                            pesoParseado = pesos[3].substring(3, pesos[3].length() - 2);
+
+                            labelClasePeso.setText(String.valueOf(Math.abs(Integer.parseInt(pesoParseado))) + "KG");
+
+                        } else if (pesos[4].length() - 1 >= 10) {
+                            pesoParseado = pesos[4].substring(3, pesos[4].length() - 2);
+
+                            labelClasePeso.setText(String.valueOf(Math.abs(Integer.parseInt(pesoParseado))) + "KG");
 
                         }
+
                     }
 
                     Thread.sleep(1000);
