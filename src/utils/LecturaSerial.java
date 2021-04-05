@@ -64,6 +64,7 @@ public class LecturaSerial {
                     String st = new String(chunk);
 
                     String[] pesos = st.split("B");
+                    String[] pesos2 = st.split("+");
 
                     if (pesos.length > 2) {
 
@@ -86,6 +87,31 @@ public class LecturaSerial {
 
                         } else if (pesos[4].length() - 1 >= 10) {
                             pesoParseado = pesos[4].substring(3, pesos[4].length() - 2);
+
+                            labelClasePeso.setText(String.valueOf(Math.abs(Integer.parseInt(pesoParseado))) + "KG");
+
+                        }
+
+                    } else if (pesos2.length > 2) {
+                        String pesoParseado = "0KG";
+                        if (pesos2[1].length() - 1 >= 10) {
+
+                            pesoParseado = pesos2[1].substring(3, pesos2[1].length() - 2);
+
+                            labelClasePeso.setText(String.valueOf(Math.abs(Integer.parseInt(pesoParseado))) + "KG");
+
+                        } else if (pesos2[2].length() - 1 >= 10) {
+                            pesoParseado = pesos2[2].substring(3, pesos2[2].length() - 2);
+
+                            labelClasePeso.setText(String.valueOf(Math.abs(Integer.parseInt(pesoParseado))) + "KG");
+
+                        } else if (pesos2[3].length() - 1 >= 10) {
+                            pesoParseado = pesos2[3].substring(3, pesos2[3].length() - 2);
+
+                            labelClasePeso.setText(String.valueOf(Math.abs(Integer.parseInt(pesoParseado))) + "KG");
+
+                        } else if (pesos2[4].length() - 1 >= 10) {
+                            pesoParseado = pesos2[4].substring(3, pesos2[4].length() - 2);
 
                             labelClasePeso.setText(String.valueOf(Math.abs(Integer.parseInt(pesoParseado))) + "KG");
 
