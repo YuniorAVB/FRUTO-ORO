@@ -21,5 +21,6 @@ public class EstadosApp {
     
     //NOMBRE DEL USUARIO QUIE INICIO SESSION EN LA APLICACION
     public  static String SESSION_USUARIO = "";
+    public  static int SESSION_USUARIO_ID = 0;
     
 }

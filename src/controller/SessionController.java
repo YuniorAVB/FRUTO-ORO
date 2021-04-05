@@ -17,6 +17,8 @@ public class SessionController {
         SessionEntiti login = SessionModel.getSessionByUsuarioAndPassword(usuario, contrasenia);
 
         if (login != null) {
+            EstadosApp.SESSION_USUARIO_ID = login.getSes_emp_id().getEmp_id();
+            EstadosApp.SESSION_USUARIO = login.getSes_usuario();
             return login.getSes_tipo();
         }
 

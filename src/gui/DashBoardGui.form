@@ -87,7 +87,7 @@
                               <Component id="jbtn_cambiar_usuario" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jlbl_nombre_usuario" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="jlbl_logo" min="-2" pref="182" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
@@ -102,7 +102,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jlbl_logo" min="-2" pref="170" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="jlbl_nombre_usuario" min="-2" pref="25" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -120,7 +120,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel1">
+            <Component class="javax.swing.JLabel" name="jlbl_nombre_usuario">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="1"/>
@@ -393,7 +393,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabel3" min="-2" pref="136" max="-2" attributes="0"/>
+                          <Component id="jlbl_nombre_usuario_2" min="-2" pref="136" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
                           <Component id="jlbl_buscar_ticket" min="-2" pref="162" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -410,7 +410,7 @@
                               <Component id="jlbl_buscar_ticket" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel3" alignment="3" max="32767" attributes="0"/>
+                                  <Component id="jlbl_nombre_usuario_2" alignment="3" max="32767" attributes="0"/>
                                   <Component id="jtxt_ticket_numero_serie" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -428,7 +428,7 @@
                     <Property name="text" type="java.lang.String" value="EMPLEADO"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel3">
+                <Component class="javax.swing.JLabel" name="jlbl_nombre_usuario_2">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="14" style="1"/>

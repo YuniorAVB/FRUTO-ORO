@@ -1,6 +1,5 @@
 package gui;
 
-
 import config.Rutas;
 import config.EstadosApp;
 import controller.EmpresaConductorController;
@@ -20,7 +19,6 @@ import javax.swing.table.DefaultTableModel;
 import state.StateApp;
 import utils.LecturaSerial;
 import utils.LecturaSerial.LeerSerial;
-import utils.LeerPuertoSerial;
 
 public class DashBoardGui extends javax.swing.JFrame {
 
@@ -40,7 +38,13 @@ public class DashBoardGui extends javax.swing.JFrame {
         this.generateNewTicket();
         this.getTicketsPendientes();
         this.setDataLabelPortSerial();
+        this.setNameUsuario();
 
+    }
+    
+    public void setNameUsuario(){
+        jlbl_nombre_usuario.setText(EstadosApp.SESSION_USUARIO.toUpperCase());
+         jlbl_nombre_usuario_2.setText(EstadosApp.SESSION_USUARIO.toUpperCase());
     }
 
     public void OcultarOpcionesSession() {
@@ -229,7 +233,7 @@ public class DashBoardGui extends javax.swing.JFrame {
     public void registrarPesajeIngreso() {
         if (jcb_conductor.getItemCount() > 0) {
             int pes_mov_id = empresa_movilidad.getEprmovdet_mov_id().getMov_id();
-            int pes_emp_id = empresa_movilidad.getEprmovdet_epr_id().getEpr_id();
+            int pes_emp_id = EstadosApp.SESSION_USUARIO_ID;
             String id_conductor = jcb_conductor.getSelectedItem().toString();
 
             int pes_con_id = Integer.parseInt(id_conductor.split(" - ")[0]);
@@ -334,7 +338,7 @@ public class DashBoardGui extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jlbl_logo = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jlbl_nombre_usuario = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jbtn_tickets = new javax.swing.JLabel();
         jbtn_proceso_pesaje = new javax.swing.JLabel();
@@ -346,7 +350,7 @@ public class DashBoardGui extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jlbl_nombre_usuario_2 = new javax.swing.JLabel();
         jtxt_ticket_numero_serie = new javax.swing.JTextField();
         jlbl_buscar_ticket = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
@@ -440,10 +444,10 @@ public class DashBoardGui extends javax.swing.JFrame {
 
         jlbl_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/images/login.png"))); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("OPERADOR");
+        jlbl_nombre_usuario.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jlbl_nombre_usuario.setForeground(new java.awt.Color(255, 255, 255));
+        jlbl_nombre_usuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlbl_nombre_usuario.setText("OPERADOR");
 
         jPanel4.setBackground(new java.awt.Color(9, 113, 195));
 
@@ -583,7 +587,7 @@ public class DashBoardGui extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jbtn_cambiar_usuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlbl_nombre_usuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jlbl_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 12, Short.MAX_VALUE))))
@@ -594,7 +598,7 @@ public class DashBoardGui extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jlbl_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlbl_nombre_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -610,8 +614,8 @@ public class DashBoardGui extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("EMPLEADO");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("PROGRAMADOR");
+        jlbl_nombre_usuario_2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jlbl_nombre_usuario_2.setText("PROGRAMADOR");
 
         jtxt_ticket_numero_serie.setEditable(false);
         jtxt_ticket_numero_serie.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -642,7 +646,7 @@ public class DashBoardGui extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlbl_nombre_usuario_2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(120, 120, 120)
                 .addComponent(jlbl_buscar_ticket, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -657,7 +661,7 @@ public class DashBoardGui extends javax.swing.JFrame {
                     .addComponent(jlbl_buscar_ticket, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jlbl_nombre_usuario_2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jtxt_ticket_numero_serie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(19, 19, 19))
         );
@@ -1804,7 +1808,6 @@ public class DashBoardGui extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1825,7 +1828,6 @@ public class DashBoardGui extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
@@ -1869,6 +1871,8 @@ public class DashBoardGui extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcb_conductor;
     private javax.swing.JLabel jlbl_buscar_ticket;
     private javax.swing.JLabel jlbl_logo;
+    private javax.swing.JLabel jlbl_nombre_usuario;
+    private javax.swing.JLabel jlbl_nombre_usuario_2;
     private javax.swing.JLabel jlbl_peso_balanza;
     private javax.swing.JLabel jlbl_proceso_peaje_capturar;
     private javax.swing.JLabel jlbl_proceso_peaje_copia;
