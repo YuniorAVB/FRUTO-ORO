@@ -73,12 +73,16 @@ public class LecturaSerial {
 
                         String[] pesos = st.split("B");
 
-                        if (pesos[1].length() > 6 && pesos[1].indexOf("+") > 0) {
+                        if (pesos[1].length() > 6) {
 
-                            String nuevaCadena = pesos[1];
-                            nuevaCadena = nuevaCadena.replaceAll("\\+", "");
-                            nuevaCadena = nuevaCadena.replaceAll("\\.", "");
-                            nuevaCadena = nuevaCadena.replaceAll("", "");
+                            String nuevaCadena = "";
+                            char[] cadenaSinParsear = pesos[1].toCharArray();
+                            for (int i = 0; i < cadenaSinParsear.length; i++) {
+                                if (Character.isDigit(cadenaSinParsear[i])) {
+                                    nuevaCadena += cadenaSinParsear[i];
+                                }
+                            }
+
                             String cadena = nuevaCadena.substring(0, nuevaCadena.length() - 2);
                             labelClasePeso.setText(cadena + "KG");
 
@@ -90,10 +94,13 @@ public class LecturaSerial {
 
                         if (pesos[1].length() > 6) {
 
-                            String nuevaCadena = pesos[1];
-                            nuevaCadena = nuevaCadena.replaceAll("B", "");
-                            nuevaCadena = nuevaCadena.replaceAll("\\.", "");
-                            nuevaCadena = nuevaCadena.replaceAll("", "");
+                            String nuevaCadena = "";
+                            char[] cadenaSinParsear = pesos[1].toCharArray();
+                            for (int i = 0; i < cadenaSinParsear.length; i++) {
+                                if (Character.isDigit(cadenaSinParsear[i])) {
+                                    nuevaCadena += cadenaSinParsear[i];
+                                }
+                            }
                             String cadena = nuevaCadena.substring(0, nuevaCadena.length() - 2);
                             labelClasePeso.setText(cadena + "KG");
 
