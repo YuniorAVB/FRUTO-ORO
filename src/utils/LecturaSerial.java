@@ -29,7 +29,7 @@ public class LecturaSerial {
         while (puertos.hasMoreElements()) {
             portId = (CommPortIdentifier) puertos.nextElement();
 
-            if (portId.getName().equalsIgnoreCase("COM2")) {
+            if (portId.getName().equalsIgnoreCase("COM1")) {
                 try {
                     serialport = (SerialPort) portId.open("LecturaSerial", 1000);
 
@@ -78,6 +78,7 @@ public class LecturaSerial {
                             String nuevaCadena = pesos[1];
                             nuevaCadena = nuevaCadena.replaceAll("\\+", "");
                             nuevaCadena = nuevaCadena.replaceAll("\\.", "");
+                            nuevaCadena = nuevaCadena.replaceAll("", "");
                             String cadena = nuevaCadena.substring(0, nuevaCadena.length() - 2);
                             labelClasePeso.setText(cadena + "KG");
 
@@ -92,6 +93,7 @@ public class LecturaSerial {
                             String nuevaCadena = pesos[1];
                             nuevaCadena = nuevaCadena.replaceAll("B", "");
                             nuevaCadena = nuevaCadena.replaceAll("\\.", "");
+                            nuevaCadena = nuevaCadena.replaceAll("", "");
                             String cadena = nuevaCadena.substring(0, nuevaCadena.length() - 2);
                             labelClasePeso.setText(cadena + "KG");
 
