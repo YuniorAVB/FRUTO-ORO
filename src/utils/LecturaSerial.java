@@ -1,16 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package utils;
 
 import gnu.io.CommPortIdentifier;
 import gnu.io.PortInUseException;
 import gnu.io.SerialPort;
+import gnu.io.UnsupportedCommOperationException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -30,14 +29,21 @@ public class LecturaSerial {
         while (puertos.hasMoreElements()) {
             portId = (CommPortIdentifier) puertos.nextElement();
 
-            if (portId.getName().equalsIgnoreCase("COM1")) {
+            if (portId.getName().equalsIgnoreCase("COM2")) {
                 try {
                     serialport = (SerialPort) portId.open("LecturaSerial", 1000);
+
+                    serialport.setSerialPortParams(9600,
+                            SerialPort.DATABITS_8,
+                            SerialPort.STOPBITS_1,
+                            SerialPort.PARITY_NONE);
                     entrada = serialport.getInputStream();
 
                     t.start();
 
                 } catch (PortInUseException | IOException e) {
+                    JOptionPane.showMessageDialog(null, "ERROR EN EL PUERTO DE CONEXION DE LA BALANZA");
+                } catch (UnsupportedCommOperationException ex) {
                     JOptionPane.showMessageDialog(null, "ERROR EN EL PUERTO DE CONEXION DE LA BALANZA");
                 }
             }
@@ -63,57 +69,31 @@ public class LecturaSerial {
                     entrada.read(chunk, 0, available);
                     String st = new String(chunk);
 
-                    String[] pesos = st.split("B");
-                    String[] pesos2 = st.split("+");
+                    if (st.indexOf("B") > 0) {
 
-                    if (pesos.length > 2) {
+                        String[] pesos = st.split("B");
 
-                        String pesoParseado = "0KG";
-                        if (pesos[1].length() - 1 >= 10) {
+                        if (pesos[1].length() > 6 && pesos[1].indexOf("+") > 0) {
 
-                            pesoParseado = pesos[1].substring(3, pesos[1].length() - 2);
-
-                            labelClasePeso.setText(String.valueOf(Math.abs(Integer.parseInt(pesoParseado))) + "KG");
-
-                        } else if (pesos[2].length() - 1 >= 10) {
-                            pesoParseado = pesos[2].substring(3, pesos[2].length() - 2);
-
-                            labelClasePeso.setText(String.valueOf(Math.abs(Integer.parseInt(pesoParseado))) + "KG");
-
-                        } else if (pesos[3].length() - 1 >= 10) {
-                            pesoParseado = pesos[3].substring(3, pesos[3].length() - 2);
-
-                            labelClasePeso.setText(String.valueOf(Math.abs(Integer.parseInt(pesoParseado))) + "KG");
-
-                        } else if (pesos[4].length() - 1 >= 10) {
-                            pesoParseado = pesos[4].substring(3, pesos[4].length() - 2);
-
-                            labelClasePeso.setText(String.valueOf(Math.abs(Integer.parseInt(pesoParseado))) + "KG");
+                            String nuevaCadena = pesos[1];
+                            nuevaCadena = nuevaCadena.replaceAll("\\+", "");
+                            nuevaCadena = nuevaCadena.replaceAll("\\.", "");
+                            String cadena = nuevaCadena.substring(0, nuevaCadena.length() - 2);
+                            labelClasePeso.setText(cadena + "KG");
 
                         }
 
-                    } else if (pesos2.length > 2) {
-                        String pesoParseado = "0KG";
-                        if (pesos2[1].length() - 1 >= 10) {
+                    } else if (st.indexOf("+") > 0) {
 
-                            pesoParseado = pesos2[1].substring(3, pesos2[1].length() - 2);
+                        String[] pesos = st.split("\\+");
 
-                            labelClasePeso.setText(String.valueOf(Math.abs(Integer.parseInt(pesoParseado))) + "KG");
+                        if (pesos[1].length() > 6) {
 
-                        } else if (pesos2[2].length() - 1 >= 10) {
-                            pesoParseado = pesos2[2].substring(3, pesos2[2].length() - 2);
-
-                            labelClasePeso.setText(String.valueOf(Math.abs(Integer.parseInt(pesoParseado))) + "KG");
-
-                        } else if (pesos2[3].length() - 1 >= 10) {
-                            pesoParseado = pesos2[3].substring(3, pesos2[3].length() - 2);
-
-                            labelClasePeso.setText(String.valueOf(Math.abs(Integer.parseInt(pesoParseado))) + "KG");
-
-                        } else if (pesos2[4].length() - 1 >= 10) {
-                            pesoParseado = pesos2[4].substring(3, pesos2[4].length() - 2);
-
-                            labelClasePeso.setText(String.valueOf(Math.abs(Integer.parseInt(pesoParseado))) + "KG");
+                            String nuevaCadena = pesos[1];
+                            nuevaCadena = nuevaCadena.replaceAll("B", "");
+                            nuevaCadena = nuevaCadena.replaceAll("\\.", "");
+                            String cadena = nuevaCadena.substring(0, nuevaCadena.length() - 2);
+                            labelClasePeso.setText(cadena + "KG");
 
                         }
 
