@@ -118,5 +118,25 @@ public class EmpresaModel {
         return result > 0;
 
     }
+    
+    public static boolean deleteEmpresaAllTables(EmpresaEntiti empresa) {
+
+        int result = 0;
+
+        try {
+            PreparedStatement stm = Conexion.getConexion().prepareStatement("DELETE FROM  " + DataBase.TBL_EMPRESA + " WHERE epr_id = ?");
+            stm.setInt(1, empresa.getEpr_id());
+            
+           
+
+
+            result = stm.executeUpdate();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, MensajeError.ERROR_LLAME_AL_PROGRAMADOR);
+        }
+        return result > 0;
+
+    }
 
 }

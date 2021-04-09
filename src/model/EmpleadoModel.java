@@ -132,5 +132,35 @@ public class EmpleadoModel {
         return result > 0;
 
     }
+    
+     public static boolean deleteEmpleadoAllTables(EmpleadoEntiti empleado) {
+
+        int result = 0;
+
+        try {
+            PreparedStatement stm = Conexion.getConexion().prepareStatement("DELETE FROM  " + DataBase.TBL_EMPLEADO + " WHERE emp_id = ?");
+            stm.setInt(1, empleado.getEmp_id());
+            
+            PreparedStatement smt2 = Conexion.getConexion().prepareStatement("DELETE FROM  " + DataBase.TBL_SESSION + " WHERE ses_emp_id = ?");
+            smt2.setInt(1, empleado.getEmp_id());
+            
+            PreparedStatement smt3 = Conexion.getConexion().prepareStatement("DELETE FROM  " + DataBase.TBL_PESAJE + " WHERE pes_emp_id = ?");
+            smt3.setInt(1, empleado.getEmp_id());
+            
+
+            result = stm.executeUpdate();
+            
+            result = smt2.executeUpdate();
+            
+            result = smt3.executeUpdate();
+            
+           
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, MensajeError.ERROR_LLAME_AL_PROGRAMADOR);
+        }
+        return result > 0;
+
+    }
 
 }

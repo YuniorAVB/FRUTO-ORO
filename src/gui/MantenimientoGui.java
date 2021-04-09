@@ -269,7 +269,7 @@ public class MantenimientoGui extends javax.swing.JFrame {
 
             case "EMPLEADOS":
 
-                EmpleadoController.deleteEmpleado(id_objeto);
+                EmpleadoController.deleteEmpleadoAllTables(id_objeto);
 
                 break;
             case "CONDUCTOR":
@@ -601,6 +601,7 @@ public class MantenimientoGui extends javax.swing.JFrame {
     jlbl_eliminar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jlbl_eliminar.setText("ELIMINAR");
     jlbl_eliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    jlbl_eliminar.setEnabled(false);
     jlbl_eliminar.setOpaque(true);
     jlbl_eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
         public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -850,16 +851,7 @@ public class MantenimientoGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jlbl_agregarMouseClicked
 
     private void jlbl_eliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbl_eliminarMouseClicked
-        if (id_objeto > 0) {
-
-            jtbl_lista.clearSelection();
-            this.eliminarObjetoSeleccionado();
-            id_objeto = -1;
-
-        } else {
-
-            JOptionPane.showMessageDialog(null, "SELECIONE PRIMERO");
-        }
+        
 
     }//GEN-LAST:event_jlbl_eliminarMouseClicked
 

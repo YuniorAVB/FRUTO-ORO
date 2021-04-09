@@ -74,4 +74,18 @@ public class EmpleadoController {
 
     }
 
+    public static void deleteEmpleadoAllTables(int emp_id) {
+
+        EmpleadoEntiti empleado = new EmpleadoEntiti(emp_id);
+
+        boolean resultado = EmpleadoModel.deleteEmpleadoAllTables(empleado);
+
+        if (resultado) {
+            JOptionPane.showMessageDialog(null, "Empleado Eliminado Correctamente");
+        } else {
+            JOptionPane.showMessageDialog(null, "Ocurrio Un Error al Eliminar");
+        }
+
+    }
+
 }

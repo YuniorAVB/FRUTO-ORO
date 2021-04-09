@@ -69,4 +69,20 @@ public class ConductorController {
         }
 
     }
+    
+    public static void deleteConductorAllTables(int con_id) {
+
+        ConductorEntiti conductor = new ConductorEntiti(con_id);
+
+        boolean resultado = ConductorModel.deleteConductorAlltables(conductor);
+
+        if (resultado) {
+            JOptionPane.showMessageDialog(null, "Conductor Eliminado Correctamente");
+        } else {
+            JOptionPane.showMessageDialog(null, "Ocurrio Un Error al Eliminar");
+        }
+
+    }
+    
+    
 }

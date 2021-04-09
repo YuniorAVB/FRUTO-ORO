@@ -109,7 +109,7 @@ public class ConductorModel {
         return result > 0;
 
     }
-    
+
     public static boolean deleteConductor(ConductorEntiti conductor) {
 
         int result = 0;
@@ -119,6 +119,31 @@ public class ConductorModel {
             stm.setInt(1, conductor.getCon_id());
 
             result = stm.executeUpdate();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, MensajeError.ERROR_LLAME_AL_PROGRAMADOR);
+        }
+        return result > 0;
+
+    }
+
+    public static boolean deleteConductorAlltables(ConductorEntiti conductor) {
+
+        int result = 0;
+
+        try {
+            PreparedStatement stm = Conexion.getConexion().prepareStatement("DELETE FROM  " + DataBase.TBL_CONDUCTOR + " WHERE con_id = ?");
+            stm.setInt(1, conductor.getCon_id());
+
+            PreparedStatement stm1 = Conexion.getConexion().prepareStatement("DELETE FROM  " + DataBase.TBL_PESAJE + " WHERE pes_con_id = ?");
+            stm1.setInt(1, conductor.getCon_id());
+
+            PreparedStatement stm2 = Conexion.getConexion().prepareStatement("DELETE FROM  " + DataBase.TBL_EMPRESA_CONDUCTOR_DETALLE + " WHERE eprcondet_con_id = ?");
+            stm2.setInt(1, conductor.getCon_id());
+
+            result = stm.executeUpdate();
+            result = stm1.executeUpdate();
+            result = stm2.executeUpdate();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, MensajeError.ERROR_LLAME_AL_PROGRAMADOR);
