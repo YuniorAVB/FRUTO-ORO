@@ -41,10 +41,10 @@ public class DashBoardGui extends javax.swing.JFrame {
         this.setNameUsuario();
 
     }
-    
-    public void setNameUsuario(){
+
+    public void setNameUsuario() {
         jlbl_nombre_usuario.setText(EstadosApp.SESSION_USUARIO.toUpperCase());
-         jlbl_nombre_usuario_2.setText(EstadosApp.SESSION_USUARIO.toUpperCase());
+        jlbl_nombre_usuario_2.setText(EstadosApp.SESSION_USUARIO.toUpperCase());
     }
 
     public void OcultarOpcionesSession() {
@@ -172,6 +172,7 @@ public class DashBoardGui extends javax.swing.JFrame {
             jtxt_placa_movilidad.setText(empresa_movilidad.getEprmovdet_mov_id().getMov_placa());
 
             getEmpresaConductor(empresa_movilidad.getEprmovdet_epr_id().getEpr_id());
+            jtxt_placa_movilidad.setEditable(false);
         }
 
     }
@@ -317,18 +318,11 @@ public class DashBoardGui extends javax.swing.JFrame {
 
     }
 
+    LecturaSerial readPortSerial;
+
     public void setDataLabelPortSerial() {
-
-        if (LecturaSerial.t == null) {
-
-            LecturaSerial.leerPueto(jlbl_peso_balanza);
-
-        } else {
-
-            LeerSerial.labelClasePeso = jlbl_peso_balanza;
-
-        }
-
+        readPortSerial = new LecturaSerial();
+        readPortSerial.leerPueto(jlbl_peso_balanza);
     }
 
     @SuppressWarnings("unchecked")
@@ -1595,7 +1589,7 @@ public class DashBoardGui extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtn_respaldoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_respaldoMouseClicked
-
+        readPortSerial.closePort();
         BackupGui v = new BackupGui();
         v.setVisible(true);
         this.dispose();
@@ -1603,6 +1597,7 @@ public class DashBoardGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtn_respaldoMouseClicked
 
     private void jbtn_cambiar_usuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_cambiar_usuarioMouseClicked
+        readPortSerial.closePort();
         LoginGui v = new LoginGui();
         v.setVisible(true);
         this.dispose();
@@ -1636,18 +1631,23 @@ public class DashBoardGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jtbl_proceso_pesaje_pendientesMouseClicked
 
     private void jbtn_ticketsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_ticketsMouseClicked
+
+        readPortSerial.closePort();
+
         TicketGui v = new TicketGui();
         v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbtn_ticketsMouseClicked
 
     private void jbtn_proceso_pesajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_proceso_pesajeMouseClicked
+        readPortSerial.closePort();
         DashBoardGui v = new DashBoardGui();
         v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbtn_proceso_pesajeMouseClicked
 
     private void jbtn_reportesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_reportesMouseClicked
+        readPortSerial.closePort();
         ReporteGui v = new ReporteGui();
         v.setVisible(true);
         this.dispose();
@@ -1672,13 +1672,14 @@ public class DashBoardGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jlbl_proceso_peaje_imprimirMouseClicked
 
     private void jbtn_mantenimientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtn_mantenimientoMouseClicked
+        readPortSerial.closePort();
         MantenimientoGui v = new MantenimientoGui();
         v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbtn_mantenimientoMouseClicked
 
     private void jlbl_proceso_peaje_nuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbl_proceso_peaje_nuevoMouseClicked
-
+        jtxt_placa_movilidad.setEditable(true);
         peso_ingreso = true;
         clearForm();
         generateNewTicket();
@@ -1758,6 +1759,7 @@ public class DashBoardGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jlbl_proceso_peaje_copiaMouseClicked
 
     private void jlbl_proceso_peaje_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbl_proceso_peaje_salirMouseClicked
+        readPortSerial.closePort();
         this.dispose();
     }//GEN-LAST:event_jlbl_proceso_peaje_salirMouseClicked
 
@@ -1778,6 +1780,7 @@ public class DashBoardGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtn_balanzaMouseClicked
 
     private void jlbl_buscar_ticketMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbl_buscar_ticketMouseClicked
+
         BuscarTicketGui v = new BuscarTicketGui();
         v.setVisible(true);
     }//GEN-LAST:event_jlbl_buscar_ticketMouseClicked

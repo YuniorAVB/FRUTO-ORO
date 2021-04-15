@@ -7,22 +7,19 @@ import gnu.io.UnsupportedCommOperationException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.regex.Pattern;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class LecturaSerial {
 
-    static CommPortIdentifier portId;
-    static Enumeration puertos;
-    static SerialPort serialport;
-    static InputStream entrada = null;
-    public static Thread t;
-    public static JLabel label;
+    CommPortIdentifier portId;
+    Enumeration puertos;
+    SerialPort serialport;
+    InputStream entrada = null;
+    Thread t;
+    JLabel label;
 
-    public static void leerPueto(JLabel label) {
+    public void leerPueto(JLabel label) {
 
         puertos = CommPortIdentifier.getPortIdentifiers();
         t = new Thread(new LeerSerial(label));
@@ -41,18 +38,24 @@ public class LecturaSerial {
 
                     t.start();
 
-                } catch (PortInUseException | IOException e) {
-                    JOptionPane.showMessageDialog(null, "ERROR EN EL PUERTO DE CONEXION DE LA BALANZA");
-                } catch (UnsupportedCommOperationException ex) {
+                } catch (PortInUseException | IOException | UnsupportedCommOperationException e) {
                     JOptionPane.showMessageDialog(null, "ERROR EN EL PUERTO DE CONEXION DE LA BALANZA");
                 }
             }
         }
+
     }
 
-    public static class LeerSerial implements Runnable {
+    public void closePort() {
 
-        public static JLabel labelClasePeso;
+        this.serialport.close();
+        this.t.stop();
+
+    }
+
+    public class LeerSerial implements Runnable {
+
+        public JLabel labelClasePeso;
 
         public LeerSerial(JLabel labelPeso) {
 
