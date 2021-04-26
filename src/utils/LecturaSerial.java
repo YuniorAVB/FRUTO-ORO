@@ -26,9 +26,9 @@ public class LecturaSerial {
         while (puertos.hasMoreElements()) {
             portId = (CommPortIdentifier) puertos.nextElement();
 
-            if (portId.getName().equalsIgnoreCase("COM1")) {
+            if (portId.getName().equalsIgnoreCase("COM2")) {
                 try {
-                    serialport = (SerialPort) portId.open("LecturaSerial", 1000);
+                    serialport = (SerialPort) portId.open("LecturaSerial", 250);
 
                     serialport.setSerialPortParams(9600,
                             SerialPort.DATABITS_8,
@@ -104,14 +104,14 @@ public class LecturaSerial {
                                     nuevaCadena += cadenaSinParsear[i];
                                 }
                             }
-                            String cadena = nuevaCadena.substring(0, nuevaCadena.length() - 2);
+                            String cadena = nuevaCadena.substring(0, nuevaCadena.length() - 3);
                             labelClasePeso.setText(cadena + "KG");
 
                         }
 
                     }
 
-                    Thread.sleep(1000);
+                    Thread.sleep(250);
 
                 } catch (IOException | InterruptedException e) {
 
@@ -122,3 +122,6 @@ public class LecturaSerial {
     }
 
 }
+
+
+//jtxt_placa_movilidad.setEditable(false);
